@@ -1,25 +1,26 @@
 //
 //  ViewController.swift
-//  SegueContext
 //
-//  Created by tokorom on 7/14/15.
-//  Copyright (c) 2015 tokoro. All rights reserved.
+//  Created by ToKoRo on 2015-07-14.
 //
 
 import UIKit
 
 class ViewController: UIViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+    var value: Int = 10 {
+        didSet {
+            self.label?.text = String(self.value)
+        }
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+    @IBOutlet weak var label: UILabel?
 
+    @IBAction func buttonDidTap(sender: AnyObject) {
+        self.performSegueWithIdentifier("Tab", context: self.value) { (value: Int) -> Void in
+            self.value = value
+        }
+    }
 
 }
 

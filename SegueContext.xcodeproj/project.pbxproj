@@ -13,6 +13,10 @@
 		F35399B61B54D14800B7CB15 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F35399B51B54D14800B7CB15 /* Images.xcassets */; };
 		F35399B91B54D14800B7CB15 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = F35399B71B54D14800B7CB15 /* LaunchScreen.xib */; };
 		F35399C51B54D14800B7CB15 /* SegueContextTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35399C41B54D14800B7CB15 /* SegueContextTests.swift */; };
+		F35399D21B54D2F200B7CB15 /* SegueContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35399CF1B54D2F200B7CB15 /* SegueContext.swift */; };
+		F35399D31B54D2F200B7CB15 /* UIViewController+SegueContext.m in Sources */ = {isa = PBXBuildFile; fileRef = F35399D11B54D2F200B7CB15 /* UIViewController+SegueContext.m */; };
+		F35399D51B54EAD200B7CB15 /* SliderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35399D41B54EAD200B7CB15 /* SliderViewController.swift */; };
+		F35399D71B54F0E900B7CB15 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35399D61B54F0E900B7CB15 /* ListViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +40,11 @@
 		F35399BE1B54D14800B7CB15 /* SegueContextTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SegueContextTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F35399C31B54D14800B7CB15 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F35399C41B54D14800B7CB15 /* SegueContextTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegueContextTests.swift; sourceTree = "<group>"; };
+		F35399CF1B54D2F200B7CB15 /* SegueContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegueContext.swift; sourceTree = "<group>"; };
+		F35399D01B54D2F200B7CB15 /* UIViewController+SegueContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+SegueContext.h"; sourceTree = "<group>"; };
+		F35399D11B54D2F200B7CB15 /* UIViewController+SegueContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+SegueContext.m"; sourceTree = "<group>"; };
+		F35399D41B54EAD200B7CB15 /* SliderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SliderViewController.swift; sourceTree = "<group>"; };
+		F35399D61B54F0E900B7CB15 /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +68,7 @@
 		F35399A01B54D14800B7CB15 = {
 			isa = PBXGroup;
 			children = (
+				F35399CE1B54D2F200B7CB15 /* Source */,
 				F35399AB1B54D14800B7CB15 /* Example */,
 				F35399C11B54D14800B7CB15 /* SegueContextTests */,
 				F35399AA1B54D14800B7CB15 /* Products */,
@@ -79,6 +89,8 @@
 			children = (
 				F35399AE1B54D14800B7CB15 /* AppDelegate.swift */,
 				F35399B01B54D14800B7CB15 /* ViewController.swift */,
+				F35399D41B54EAD200B7CB15 /* SliderViewController.swift */,
+				F35399D61B54F0E900B7CB15 /* ListViewController.swift */,
 				F35399B21B54D14800B7CB15 /* Main.storyboard */,
 				F35399B51B54D14800B7CB15 /* Images.xcassets */,
 				F35399B71B54D14800B7CB15 /* LaunchScreen.xib */,
@@ -112,12 +124,22 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		F35399CE1B54D2F200B7CB15 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				F35399CF1B54D2F200B7CB15 /* SegueContext.swift */,
+				F35399D01B54D2F200B7CB15 /* UIViewController+SegueContext.h */,
+				F35399D11B54D2F200B7CB15 /* UIViewController+SegueContext.m */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		F35399A81B54D14800B7CB15 /* SegueContext */ = {
+		F35399A81B54D14800B7CB15 /* Example */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F35399C81B54D14800B7CB15 /* Build configuration list for PBXNativeTarget "SegueContext" */;
+			buildConfigurationList = F35399C81B54D14800B7CB15 /* Build configuration list for PBXNativeTarget "Example" */;
 			buildPhases = (
 				F35399A51B54D14800B7CB15 /* Sources */,
 				F35399A61B54D14800B7CB15 /* Frameworks */,
@@ -127,7 +149,7 @@
 			);
 			dependencies = (
 			);
-			name = SegueContext;
+			name = Example;
 			productName = SegueContext;
 			productReference = F35399A91B54D14800B7CB15 /* SegueContext.app */;
 			productType = "com.apple.product-type.application";
@@ -181,7 +203,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				F35399A81B54D14800B7CB15 /* SegueContext */,
+				F35399A81B54D14800B7CB15 /* Example */,
 				F35399BD1B54D14800B7CB15 /* SegueContextTests */,
 			);
 		};
@@ -212,8 +234,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F35399D31B54D2F200B7CB15 /* UIViewController+SegueContext.m in Sources */,
+				F35399D51B54EAD200B7CB15 /* SliderViewController.swift in Sources */,
+				F35399D71B54F0E900B7CB15 /* ListViewController.swift in Sources */,
 				F35399B11B54D14800B7CB15 /* ViewController.swift in Sources */,
 				F35399AF1B54D14800B7CB15 /* AppDelegate.swift in Sources */,
+				F35399D21B54D2F200B7CB15 /* SegueContext.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -230,7 +256,7 @@
 /* Begin PBXTargetDependency section */
 		F35399C01B54D14800B7CB15 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = F35399A81B54D14800B7CB15 /* SegueContext */;
+			target = F35399A81B54D14800B7CB15 /* Example */;
 			targetProxy = F35399BF1B54D14800B7CB15 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -402,7 +428,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F35399C81B54D14800B7CB15 /* Build configuration list for PBXNativeTarget "SegueContext" */ = {
+		F35399C81B54D14800B7CB15 /* Build configuration list for PBXNativeTarget "Example" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F35399C91B54D14800B7CB15 /* Debug */,
