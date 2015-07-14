@@ -3,7 +3,7 @@ Pod::Spec.new do |s|
   s.version      = "0.0.1"
   s.summary      = "You can pass the context to destination view controller easily"
   s.homepage     = "https://github.com/tokorom/SegueContext"
-  s.license      = "MIT"
+  s.license      = { :type => "MIT", :file => "LICENSE" }
   s.author       = { "tokorom" => "tokorom@gmail.com" }
   s.source       = { :git => 'https://github.com/tokorom/SegueContext.git', :tag => s.version }
 
