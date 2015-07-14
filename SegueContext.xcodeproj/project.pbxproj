@@ -59,7 +59,7 @@
 		F35399A01B54D14800B7CB15 = {
 			isa = PBXGroup;
 			children = (
-				F35399AB1B54D14800B7CB15 /* SegueContext */,
+				F35399AB1B54D14800B7CB15 /* Example */,
 				F35399C11B54D14800B7CB15 /* SegueContextTests */,
 				F35399AA1B54D14800B7CB15 /* Products */,
 			);
@@ -74,7 +74,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		F35399AB1B54D14800B7CB15 /* SegueContext */ = {
+		F35399AB1B54D14800B7CB15 /* Example */ = {
 			isa = PBXGroup;
 			children = (
 				F35399AE1B54D14800B7CB15 /* AppDelegate.swift */,
@@ -84,7 +84,7 @@
 				F35399B71B54D14800B7CB15 /* LaunchScreen.xib */,
 				F35399AC1B54D14800B7CB15 /* Supporting Files */,
 			);
-			path = SegueContext;
+			path = Example;
 			sourceTree = "<group>";
 		};
 		F35399AC1B54D14800B7CB15 /* Supporting Files */ = {
@@ -340,7 +340,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = SegueContext/Info.plist;
+				INFOPLIST_FILE = Example/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -350,7 +350,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = SegueContext/Info.plist;
+				INFOPLIST_FILE = Example/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
