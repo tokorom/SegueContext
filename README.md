@@ -3,6 +3,8 @@ SegueContext
 
 You can pass the context to destination view controller easily.
 
+![send-context](images/sample.png)
+
 This is new version of [TKRSegueOptions](https://github.com/tokorom/TKRSegueOptions) for Swift!
 
 ## Do you have no complaints on the view controller transition now?
@@ -85,8 +87,8 @@ self.performSegueWithIdentifier("Next", context: 10) { (item: Item) -> Void in
 -  Destination View Controller
 
 ```swift
-if let callback: (Int) -> Void = self.callback() {
-    callback(self.value)
+if let callback: (Item) -> Void = self.callback() {
+    callback(selectedItem)
 }
 ```
 
