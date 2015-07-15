@@ -8,13 +8,9 @@ import UIKit
 
 class ListViewController: UITableViewController {
 
-    struct MyContext: ContextConvertible {
+    struct MyContext {
         let value: Int
         let multiplier: Int
-
-        var context: Context {
-            return Context(object: self)
-        }
     }
 
     var value: Int = 0 {
