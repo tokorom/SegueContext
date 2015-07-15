@@ -58,7 +58,6 @@
         <!--Slider-->
         <scene sceneID="HTy-DZ-Tr0">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="yuZ-Ke-I4v" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="DDM-vg-s3r" customClass="SliderViewController" customModule="Example" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="rq2-jO-gqr"/>
@@ -74,7 +73,7 @@
                                     <constraint firstAttribute="height" constant="44" id="HcL-Oe-Dk2"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NKR-z6-F4m">
@@ -115,6 +114,18 @@
                                     <action selector="buttonDidTap:" destination="DDM-vg-s3r" eventType="touchUpInside" id="1Ee-DV-a25"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XMQ-Jz-z0j">
+                                <rect key="frame" x="0.0" y="467" width="320" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="fxh-bH-gV3"/>
+                                </constraints>
+                                <state key="normal" title="Select other values">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="othersButtonDidTap:" destination="DDM-vg-s3r" eventType="touchUpInside" id="nI6-pD-JjW"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -126,11 +137,14 @@
                             <constraint firstItem="K2X-P5-mb1" firstAttribute="top" secondItem="rq2-jO-gqr" secondAttribute="bottom" constant="8" id="BB8-cu-h9t"/>
                             <constraint firstItem="K2X-P5-mb1" firstAttribute="leading" secondItem="tcK-Kw-ku4" secondAttribute="leading" id="Clp-3k-3wF"/>
                             <constraint firstItem="f96-C3-YrC" firstAttribute="leading" secondItem="tcK-Kw-ku4" secondAttribute="leading" id="DSE-B5-eAP"/>
+                            <constraint firstAttribute="trailing" secondItem="XMQ-Jz-z0j" secondAttribute="trailing" id="Fir-bE-dvJ"/>
                             <constraint firstItem="NKR-z6-F4m" firstAttribute="leading" secondItem="tcK-Kw-ku4" secondAttribute="leading" id="G59-Ms-sVF"/>
                             <constraint firstItem="NKR-z6-F4m" firstAttribute="top" secondItem="K2X-P5-mb1" secondAttribute="bottom" constant="8" id="H4l-dQ-1RD"/>
                             <constraint firstItem="PY9-Jr-xdh" firstAttribute="top" secondItem="NKR-z6-F4m" secondAttribute="bottom" constant="32" id="KdM-gp-BOC"/>
                             <constraint firstAttribute="trailing" secondItem="f96-C3-YrC" secondAttribute="trailing" id="KuW-Ou-0Zg"/>
                             <constraint firstItem="xi9-bc-mCr" firstAttribute="top" secondItem="PY9-Jr-xdh" secondAttribute="bottom" constant="32" id="Qko-jo-ke8"/>
+                            <constraint firstItem="XMQ-Jz-z0j" firstAttribute="leading" secondItem="tcK-Kw-ku4" secondAttribute="leading" id="S7k-0Y-3Mv"/>
+                            <constraint firstItem="0N6-6w-S94" firstAttribute="top" secondItem="XMQ-Jz-z0j" secondAttribute="bottom" constant="8" id="ht8-9T-6FO"/>
                             <constraint firstAttribute="trailing" secondItem="PY9-Jr-xdh" secondAttribute="trailing" constant="40" id="iZ3-Py-5Ga"/>
                         </constraints>
                     </view>
@@ -140,6 +154,7 @@
                         <outlet property="slider" destination="xi9-bc-mCr" id="FzP-dm-qM7"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yuZ-Ke-I4v" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1073" y="223"/>
         </scene>
@@ -251,7 +266,7 @@
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Select other values" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="JG4-x7-wUy">
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -277,7 +292,7 @@
         <!--Navi-->
         <scene sceneID="TTu-1j-yLk">
             <objects>
-                <navigationController id="YA5-O5-GVG" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="NavigationController" id="YA5-O5-GVG" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Navi" id="sfj-b3-pZv"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ZQn-eo-Drj">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>

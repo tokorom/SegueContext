@@ -55,9 +55,12 @@ extension ListViewController: UITableViewDelegate {
         case 1:
             if let callback: (Int) -> Void = self.callback() {
                 let value = self.valueWithIndexPath(indexPath)
-                callback(self.valueWithIndexPath(indexPath))
+                callback(value)
             }
-            self.dismissViewControllerAnimated(true, completion: nil)
+            let presentingVC = self.presentingViewController
+            self.dismissViewControllerAnimated(true) { _ -> Void in
+                presentingVC?.dismissViewControllerAnimated(true, completion: nil)
+            }
         case 2:
             let context = MyContext(value: self.value, multiplier: self.multiplier * 2)
             self.pushViewControllerWithIdentifier("ListViewController", context: context, callback: self.rawCallabck)

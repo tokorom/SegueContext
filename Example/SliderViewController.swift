@@ -38,5 +38,8 @@ class SliderViewController: UIViewController {
         }
         self.dismissViewControllerAnimated(true, completion: nil)
     }
-    
+
+    @IBAction func othersButtonDidTap(sender: AnyObject) {
+        self.presentViewControllerWithIdentifier("NavigationController", context: context, callback: self.rawCallabck)
+    }
 }
