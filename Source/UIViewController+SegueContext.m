@@ -12,6 +12,8 @@
 
 @implementation UIViewController (SegueContext)
 
+#ifdef DISABLE_SWIZZLING
+
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wobjc-protocol-method-implementation"
 
@@ -21,5 +23,7 @@
 }
 
 #pragma clang diagnostic pop
+
+#endif
 
 @end
