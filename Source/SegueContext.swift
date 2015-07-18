@@ -234,31 +234,18 @@ extension UIViewController {
     }
 
     public func performSegueWithIdentifier(identifier: String, sender: AnyObject? = nil, context: Any?) -> SegueContext {
-        let customContext: Context
-        if let context = context as? Context {
-            customContext = context
-        } else {
-            customContext = Context(object: context)
-        }
-        customContext.segueIdentifier = identifier
-        self.sendCustomContext = customContext
-
-        self.performSegueWithIdentifier(identifier, sender: sender)
-
-        return SegueContext()
+        return self.performSegueWithIdentifier(identifier, sender: sender, context: context, callback: nil)
     }
 
     public func performSegueWithIdentifier(identifier: String, sender: AnyObject? = nil, callback: Any?) -> SegueContext {
-        let customContextForCallback = Context(callback: callback)
-        customContextForCallback.segueIdentifier = identifier
-        self.sendCustomContextForCallback = customContextForCallback
-
-        self.performSegueWithIdentifier(identifier, sender: sender)
-
-        return SegueContext()
+        return self.performSegueWithIdentifier(identifier, sender: sender, context: nil, callback: callback)
     }
 
     public func performSegueWithIdentifier(identifier: String, sender: AnyObject? = nil, context: Any?, callback: Any?) -> SegueContext {
+#if !DISABLE_SWIZZLING
+        self.replacePrepareForSegueIfNeeded()
+#endif
+
         let customContext: Context
         if let context = context as? Context {
             customContext = context
@@ -419,10 +406,36 @@ extension UIViewController {
         }
     }
 
-    /* For connection to the Objective-C */
-    func swc_prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject?) {
-        if let segue = segue,
-               destination = segue.destinationViewController as? UIViewController,
+}
+
+#if !DISABLE_SWIZZLING
+
+// MARK: - Swizzling
+
+var swc_swizzled_already: UInt8 = 0
+
+extension UIViewController {
+
+    class func replacePrepareForSegueIfNeeded() {
+        if nil == objc_getAssociatedObject(self, &swc_swizzled_already) {
+            objc_setAssociatedObject(self, &swc_swizzled_already, NSNumber(bool: true), objc_AssociationPolicy(OBJC_ASSOCIATION_RETAIN_NONATOMIC))
+            let original = class_getInstanceMethod(self, "prepareForSegue:sender:")
+            let replaced = class_getInstanceMethod(self, "swc_wrapped_prepareForSegue:sender:")
+            method_exchangeImplementations(original, replaced)
+        }
+    }
+
+    func replacePrepareForSegueIfNeeded() {
+        self.dynamicType.replacePrepareForSegueIfNeeded()
+    }
+    
+    func swc_wrapped_prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        self.swc_wrapped_prepareForSegue(segue, sender: sender)
+        self.swc_prepareForSegue(segue, sender: sender)
+    }
+
+    func swc_prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let destination = segue.destinationViewController as? UIViewController,
                source = segue.sourceViewController as? UIViewController,
                customContext = source.sendCustomContext
         {
@@ -433,8 +446,7 @@ extension UIViewController {
             destination.configureCustomContext(customContext)
             source.sendCustomContext = nil
         }
-        if let segue = segue,
-               destination = segue.destinationViewController as? UIViewController,
+        if let destination = segue.destinationViewController as? UIViewController,
                source = segue.sourceViewController as? UIViewController,
                customContextForCallback = source.sendCustomContextForCallback
         {
@@ -448,3 +460,5 @@ extension UIViewController {
     }
 
 }
+
+#endif
