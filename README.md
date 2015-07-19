@@ -1,6 +1,8 @@
 SegueContext
 ==================
 
+[![Cocoapods Compatible](https://img.shields.io/cocoapods/v/SegueContext.svg)](https://img.shields.io/cocoapods/v/SegueContext.svg)
+
 You can pass the context to destination view controller easily.
 
 ![send-context](images/sample.png)
