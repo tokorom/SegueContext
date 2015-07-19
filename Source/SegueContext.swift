@@ -6,11 +6,6 @@
 
 import UIKit
 
-// MARK: - SegueContext
-
-public class SegueContext {
-}
-
 // MARK: - Context
 
 public class Context {
@@ -233,16 +228,18 @@ extension UIViewController {
         }
     }
 
-    public func performSegueWithIdentifier(identifier: String, sender: AnyObject? = nil, context: Any?) -> SegueContext {
-        return self.performSegueWithIdentifier(identifier, sender: sender, context: context, callback: nil)
+    public func performSegueWithIdentifier(identifier: String, sender: AnyObject? = nil, context: Any?) {
+        self.performSegueWithIdentifier(identifier, sender: sender, context: context, callback: nil)
     }
 
-    public func performSegueWithIdentifier(identifier: String, sender: AnyObject? = nil, callback: Any?) -> SegueContext {
-        return self.performSegueWithIdentifier(identifier, sender: sender, context: nil, callback: callback)
+    public func performSegueWithIdentifier(identifier: String, sender: AnyObject? = nil, callback: Any?) {
+        self.performSegueWithIdentifier(identifier, sender: sender, context: nil, callback: callback)
     }
 
-    public func performSegueWithIdentifier(identifier: String, sender: AnyObject? = nil, context: Any?, callback: Any?) -> SegueContext {
+    public func performSegueWithIdentifier(identifier: String, sender: AnyObject? = nil, context: Any?, callback: Any?) {
 #if !DISABLE_SWIZZLING
+        objc_sync_enter(self.dynamicType)
+
         self.replacePrepareForSegueIfNeeded()
 #endif
 
@@ -261,7 +258,9 @@ extension UIViewController {
 
         self.performSegueWithIdentifier(identifier, sender: sender)
 
-        return SegueContext()
+#if !DISABLE_SWIZZLING
+        objc_sync_exit(self.dynamicType)
+#endif
     }
 
     public func presentViewControllerWithStoryboardName(storyboardName: String, identifier: String? = nil, bundle: NSBundle? = nil, animated: Bool = true, transitionStyle: UIModalTransitionStyle? = nil, context: Any? = nil, callback: Any? = nil) {
@@ -425,13 +424,28 @@ extension UIViewController {
         }
     }
 
+    class func revertReplacedPrepareForSegueIfNeeded() {
+        if nil != objc_getAssociatedObject(self, &swc_swizzled_already) {
+            objc_setAssociatedObject(self, &swc_swizzled_already, nil, objc_AssociationPolicy(OBJC_ASSOCIATION_RETAIN_NONATOMIC))
+            let original = class_getInstanceMethod(self, "prepareForSegue:sender:")
+            let replaced = class_getInstanceMethod(self, "swc_wrapped_prepareForSegue:sender:")
+            method_exchangeImplementations(original, replaced)
+        }
+    }
+
     func replacePrepareForSegueIfNeeded() {
         self.dynamicType.replacePrepareForSegueIfNeeded()
+    }
+
+    func revertReplacedPrepareForSegueIfNeeded() {
+        self.dynamicType.revertReplacedPrepareForSegueIfNeeded()
     }
     
     func swc_wrapped_prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         self.swc_wrapped_prepareForSegue(segue, sender: sender)
         self.swc_prepareForSegue(segue, sender: sender)
+
+        self.revertReplacedPrepareForSegueIfNeeded()
     }
 
     func swc_prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
