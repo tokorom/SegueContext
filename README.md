@@ -94,6 +94,31 @@ if let callback: (Item) -> Void = self.callback() {
 }
 ```
 
+### When you need Container View Controller
+
+- Sample 1: manually
+
+```swift
+if let viewController = self.childViewControllers.first as? XXX {
+    viewController.sendContext(10)
+}
+```
+
+- Sample 2: use prepareForSegue
+
+```swift
+override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    self.contextSenderForSegue(segue) { segueIdentifier, viewController, sendContext in
+        switch segueIdentifier {
+        case "Embedded1", "Embedded2":
+            sendContext(10)
+        default:
+            break
+        }
+    }
+}
+```
+
 ## Other Usages
 
 ### performSegue
