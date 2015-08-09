@@ -67,7 +67,11 @@ public class Context {
 }
 
 public func toContext(object: Any?) -> Context {
-    return Context(object: object)
+    if let context = object as? Context {
+        return context
+    } else {
+        return Context(object: object)
+    }
 }
 
 public func toContext(object1: Any?, object2: Any?, _ object3: Any? = nil, _ object4: Any? = nil, _ object5: Any? = nil) -> Context {
@@ -354,7 +358,11 @@ extension UIViewController {
     }
 
     public func sendContext(object1: Any?, _ object2: Any?, _ object3: Any? = nil, _ object4: Any? = nil, _ object5: Any? = nil) -> Context {
-        let context = toContext(object1, object2, object3, object4, object5)
+        return self.sendContext(toContext(object1, object2, object3, object4, object5))
+    }
+
+    public func sendContext(object: Any?) -> Context {
+        let context = toContext(object)
         self.configureCustomContext(context)
         return context
     }
