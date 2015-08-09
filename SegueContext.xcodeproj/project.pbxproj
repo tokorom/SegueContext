@@ -17,6 +17,8 @@
 		F35399D31B54D2F200B7CB15 /* UIViewController+SegueContext.m in Sources */ = {isa = PBXBuildFile; fileRef = F35399D11B54D2F200B7CB15 /* UIViewController+SegueContext.m */; };
 		F35399D51B54EAD200B7CB15 /* SliderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35399D41B54EAD200B7CB15 /* SliderViewController.swift */; };
 		F35399D71B54F0E900B7CB15 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35399D61B54F0E900B7CB15 /* ListViewController.swift */; };
+		F3D832301B773DFC00AD489C /* ChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D8322E1B773DFC00AD489C /* ChildViewController.swift */; };
+		F3D832311B773DFC00AD489C /* ParentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D8322F1B773DFC00AD489C /* ParentViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,7 +32,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		F35399A91B54D14800B7CB15 /* SegueContext.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SegueContext.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F35399A91B54D14800B7CB15 /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F35399AD1B54D14800B7CB15 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F35399AE1B54D14800B7CB15 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F35399B01B54D14800B7CB15 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -45,6 +47,8 @@
 		F35399D11B54D2F200B7CB15 /* UIViewController+SegueContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+SegueContext.m"; sourceTree = "<group>"; };
 		F35399D41B54EAD200B7CB15 /* SliderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SliderViewController.swift; sourceTree = "<group>"; };
 		F35399D61B54F0E900B7CB15 /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
+		F3D8322E1B773DFC00AD489C /* ChildViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChildViewController.swift; sourceTree = "<group>"; };
+		F3D8322F1B773DFC00AD489C /* ParentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParentViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,7 +82,7 @@
 		F35399AA1B54D14800B7CB15 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F35399A91B54D14800B7CB15 /* SegueContext.app */,
+				F35399A91B54D14800B7CB15 /* Example.app */,
 				F35399BE1B54D14800B7CB15 /* SegueContextTests.xctest */,
 			);
 			name = Products;
@@ -91,6 +95,8 @@
 				F35399B01B54D14800B7CB15 /* ViewController.swift */,
 				F35399D41B54EAD200B7CB15 /* SliderViewController.swift */,
 				F35399D61B54F0E900B7CB15 /* ListViewController.swift */,
+				F3D8322E1B773DFC00AD489C /* ChildViewController.swift */,
+				F3D8322F1B773DFC00AD489C /* ParentViewController.swift */,
 				F35399B21B54D14800B7CB15 /* Main.storyboard */,
 				F35399B51B54D14800B7CB15 /* Images.xcassets */,
 				F35399B71B54D14800B7CB15 /* LaunchScreen.xib */,
@@ -151,7 +157,7 @@
 			);
 			name = Example;
 			productName = SegueContext;
-			productReference = F35399A91B54D14800B7CB15 /* SegueContext.app */;
+			productReference = F35399A91B54D14800B7CB15 /* Example.app */;
 			productType = "com.apple.product-type.application";
 		};
 		F35399BD1B54D14800B7CB15 /* SegueContextTests */ = {
@@ -234,11 +240,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F3D832301B773DFC00AD489C /* ChildViewController.swift in Sources */,
 				F35399D31B54D2F200B7CB15 /* UIViewController+SegueContext.m in Sources */,
 				F35399D51B54EAD200B7CB15 /* SliderViewController.swift in Sources */,
 				F35399D71B54F0E900B7CB15 /* ListViewController.swift in Sources */,
 				F35399B11B54D14800B7CB15 /* ViewController.swift in Sources */,
 				F35399AF1B54D14800B7CB15 /* AppDelegate.swift in Sources */,
+				F3D832311B773DFC00AD489C /* ParentViewController.swift in Sources */,
 				F35399D21B54D2F200B7CB15 /* SegueContext.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -435,6 +443,7 @@
 				F35399CA1B54D14800B7CB15 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F35399CB1B54D14800B7CB15 /* Build configuration list for PBXNativeTarget "SegueContextTests" */ = {
 			isa = XCConfigurationList;
@@ -443,6 +452,7 @@
 				F35399CD1B54D14800B7CB15 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

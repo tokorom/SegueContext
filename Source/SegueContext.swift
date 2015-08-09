@@ -423,6 +423,15 @@ var swc_swizzled_already: UInt8 = 0
 
 extension UIViewController {
 
+    public func contextSenderForSegue(segue: UIStoryboardSegue, callback: (String, UIViewController, (Any?) -> Void) -> Void) {
+        if let segueIdentifier = segue.identifier, viewController = segue.destinationViewController as? UIViewController {
+            let sendContext: (Any?) -> Void = { context in
+                viewController.sendContext(context)
+            }
+            callback(segueIdentifier, viewController, sendContext)
+        }
+    }
+
     class func replacePrepareForSegueIfNeeded() {
         if nil == objc_getAssociatedObject(self, &swc_swizzled_already) {
             objc_setAssociatedObject(self, &swc_swizzled_already, NSNumber(bool: true), objc_AssociationPolicy(OBJC_ASSOCIATION_RETAIN_NONATOMIC))
