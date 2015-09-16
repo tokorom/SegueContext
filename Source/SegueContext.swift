@@ -131,7 +131,7 @@ extension UIViewController {
         return self.customContext?[key] as? T
     }
 
-    var rawCallback: Any? {
+    public var rawCallback: Any? {
         if let customContextForCallback = self.customContextForCallback {
             return customContextForCallback.callback
         } else {
