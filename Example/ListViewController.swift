@@ -59,7 +59,7 @@ extension ListViewController: UITableViewDelegate {
             }
         case 2:
             let context = MyContext(value: self.value, multiplier: self.multiplier * 2)
-            self.pushViewControllerWithIdentifier("ListViewController", context: context, callback: self.rawCallabck)
+            self.pushViewControllerWithIdentifier("ListViewController", context: context, callback: self.rawCallback)
         default:
             break
         }

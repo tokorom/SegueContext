@@ -40,6 +40,6 @@ class SliderViewController: UIViewController {
     }
 
     @IBAction func othersButtonDidTap(sender: AnyObject) {
-        self.presentViewControllerWithIdentifier("NavigationController", context: context, callback: self.rawCallabck)
+        self.presentViewControllerWithIdentifier("NavigationController", context: context, callback: self.rawCallback)
     }
 }
