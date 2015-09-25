@@ -74,7 +74,7 @@ public func toContext(object: Any?) -> Context {
     }
 }
 
-public func toContext(object1: Any?, object2: Any?, _ object3: Any? = nil, _ object4: Any? = nil, _ object5: Any? = nil) -> Context {
+public func toContext(object1: Any?, _ object2: Any?, _ object3: Any? = nil, _ object4: Any? = nil, _ object5: Any? = nil) -> Context {
     var dict = [String : Any]()
     dict["1"] = object1
     dict["2"] = object2
@@ -169,9 +169,9 @@ extension UIViewController {
         }
         set {
             if let context = newValue {
-                objc_setAssociatedObject(self, &CustomProperty.context, context, UInt(OBJC_ASSOCIATION_RETAIN))
+                objc_setAssociatedObject(self, &CustomProperty.context, context, .OBJC_ASSOCIATION_RETAIN)
             } else {
-                objc_setAssociatedObject(self, &CustomProperty.context, nil, UInt(OBJC_ASSOCIATION_RETAIN))
+                objc_setAssociatedObject(self, &CustomProperty.context, nil, .OBJC_ASSOCIATION_RETAIN)
             }
         }
     }
@@ -189,9 +189,9 @@ extension UIViewController {
         }
         set {
             if let context = newValue {
-                objc_setAssociatedObject(self, &CustomProperty.callback, context, UInt(OBJC_ASSOCIATION_RETAIN))
+                objc_setAssociatedObject(self, &CustomProperty.callback, context, .OBJC_ASSOCIATION_RETAIN)
             } else {
-                objc_setAssociatedObject(self, &CustomProperty.callback, nil, UInt(OBJC_ASSOCIATION_RETAIN))
+                objc_setAssociatedObject(self, &CustomProperty.callback, nil, .OBJC_ASSOCIATION_RETAIN)
             }
         }
     }
@@ -207,9 +207,9 @@ extension UIViewController {
         }
         set {
             if let context = newValue {
-                objc_setAssociatedObject(self, &CustomProperty.sendContext, context, UInt(OBJC_ASSOCIATION_RETAIN))
+                objc_setAssociatedObject(self, &CustomProperty.sendContext, context, .OBJC_ASSOCIATION_RETAIN)
             } else {
-                objc_setAssociatedObject(self, &CustomProperty.sendContext, nil, UInt(OBJC_ASSOCIATION_RETAIN))
+                objc_setAssociatedObject(self, &CustomProperty.sendContext, nil, .OBJC_ASSOCIATION_RETAIN)
             }
         }
     }
@@ -225,9 +225,9 @@ extension UIViewController {
         }
         set {
             if let context = newValue {
-                objc_setAssociatedObject(self, &CustomProperty.sendCallback, context, UInt(OBJC_ASSOCIATION_RETAIN))
+                objc_setAssociatedObject(self, &CustomProperty.sendCallback, context, .OBJC_ASSOCIATION_RETAIN)
             } else {
-                objc_setAssociatedObject(self, &CustomProperty.sendCallback, nil, UInt(OBJC_ASSOCIATION_RETAIN))
+                objc_setAssociatedObject(self, &CustomProperty.sendCallback, nil, .OBJC_ASSOCIATION_RETAIN)
             }
         }
     }
@@ -338,9 +338,9 @@ extension UIViewController {
     public class func viewControllerFromStoryboard(storyboard: UIStoryboard, identifier: String? = nil, context: Any? = nil, callback: Any? = nil) -> UIViewController? {
         let viewController: UIViewController?
         if let identifier = identifier {
-            viewController = storyboard.instantiateViewControllerWithIdentifier(identifier) as? UIViewController
+            viewController = storyboard.instantiateViewControllerWithIdentifier(identifier)
         } else {
-            viewController = storyboard.instantiateInitialViewController() as? UIViewController
+            viewController = storyboard.instantiateInitialViewController()
         }
         if let viewController = viewController {
             if let context = context as? Context {
@@ -371,20 +371,16 @@ extension UIViewController {
         let viewController = self
         viewController.customContext = customContext
         for viewController in viewController.childViewControllers {
-            if let viewController = viewController as? UIViewController {
-                viewController.configureCustomContext(customContext)
-            }
+            viewController.configureCustomContext(customContext)
         }
         if let navi = viewController as? UINavigationController {
-            if let viewController = navi.viewControllers.first as? UIViewController {
+            if let viewController = navi.viewControllers.first {
                 viewController.configureCustomContext(customContext)
             }
         } else if let tab = viewController as? UITabBarController {
             if let viewControllers = tab.viewControllers {
                 for viewController in viewControllers {
-                    if let viewController = viewController as? UIViewController {
-                        viewController.configureCustomContext(customContext)
-                    }
+                    viewController.configureCustomContext(customContext)
                 }
             }
         }
@@ -394,20 +390,16 @@ extension UIViewController {
         let viewController = self
         viewController.customContextForCallback = customContextForCallback
         for viewController in viewController.childViewControllers {
-            if let viewController = viewController as? UIViewController {
-                viewController.configureCustomContextForCallback(customContextForCallback)
-            }
+            viewController.configureCustomContextForCallback(customContextForCallback)
         }
         if let navi = viewController as? UINavigationController {
-            if let viewController = navi.viewControllers.first as? UIViewController {
+            if let viewController = navi.viewControllers.first {
                 viewController.configureCustomContextForCallback(customContextForCallback)
             }
         } else if let tab = viewController as? UITabBarController {
             if let viewControllers = tab.viewControllers {
                 for viewController in viewControllers {
-                    if let viewController = viewController as? UIViewController {
-                        viewController.configureCustomContextForCallback(customContextForCallback)
-                    }
+                    viewController.configureCustomContextForCallback(customContextForCallback)
                 }
             }
         }
@@ -424,7 +416,8 @@ var swc_swizzled_already: UInt8 = 0
 extension UIViewController {
 
     public func contextSenderForSegue(segue: UIStoryboardSegue, callback: (String, UIViewController, (Any?) -> Void) -> Void) {
-        if let segueIdentifier = segue.identifier, viewController = segue.destinationViewController as? UIViewController {
+        if let segueIdentifier = segue.identifier  {
+            let viewController = segue.destinationViewController
             let sendContext: (Any?) -> Void = { context in
                 viewController.sendContext(context)
             }
@@ -434,7 +427,7 @@ extension UIViewController {
 
     class func replacePrepareForSegueIfNeeded() {
         if nil == objc_getAssociatedObject(self, &swc_swizzled_already) {
-            objc_setAssociatedObject(self, &swc_swizzled_already, NSNumber(bool: true), objc_AssociationPolicy(OBJC_ASSOCIATION_RETAIN_NONATOMIC))
+            objc_setAssociatedObject(self, &swc_swizzled_already, NSNumber(bool: true), .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
             let original = class_getInstanceMethod(self, "prepareForSegue:sender:")
             let replaced = class_getInstanceMethod(self, "swc_wrapped_prepareForSegue:sender:")
             method_exchangeImplementations(original, replaced)
@@ -443,7 +436,7 @@ extension UIViewController {
 
     class func revertReplacedPrepareForSegueIfNeeded() {
         if nil != objc_getAssociatedObject(self, &swc_swizzled_already) {
-            objc_setAssociatedObject(self, &swc_swizzled_already, nil, objc_AssociationPolicy(OBJC_ASSOCIATION_RETAIN_NONATOMIC))
+            objc_setAssociatedObject(self, &swc_swizzled_already, nil, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
             let original = class_getInstanceMethod(self, "prepareForSegue:sender:")
             let replaced = class_getInstanceMethod(self, "swc_wrapped_prepareForSegue:sender:")
             method_exchangeImplementations(original, replaced)
@@ -466,10 +459,9 @@ extension UIViewController {
     }
 
     func swc_prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let destination = segue.destinationViewController as? UIViewController,
-               source = segue.sourceViewController as? UIViewController,
-               customContext = source.sendCustomContext
-        {
+        let destination = segue.destinationViewController
+        let source = segue.sourceViewController
+        if let customContext = source.sendCustomContext {
             if let targetIdentifier = customContext.segueIdentifier where targetIdentifier != segue.identifier {
                 return
             }
@@ -477,10 +469,7 @@ extension UIViewController {
             destination.configureCustomContext(customContext)
             source.sendCustomContext = nil
         }
-        if let destination = segue.destinationViewController as? UIViewController,
-               source = segue.sourceViewController as? UIViewController,
-               customContextForCallback = source.sendCustomContextForCallback
-        {
+        if let customContextForCallback = source.sendCustomContextForCallback {
             if let targetIdentifier = customContextForCallback.segueIdentifier where targetIdentifier != segue.identifier {
                 return
             }
