@@ -44,7 +44,7 @@ class ListViewController: UITableViewController {
 
 // MARK: - UITableViewDelegate
 
-extension ListViewController: UITableViewDelegate {
+extension ListViewController {
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         switch indexPath.section {
