@@ -5,6 +5,7 @@
 //
 
 import UIKit
+import SegueContext
 
 class SliderViewController: UIViewController {
 

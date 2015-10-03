@@ -241,11 +241,9 @@ extension UIViewController {
     }
 
     public func performSegueWithIdentifier(identifier: String, sender: AnyObject? = nil, context: Any?, callback: Any?) {
-#if !DISABLE_SWIZZLING
         objc_sync_enter(self.dynamicType)
 
         self.replacePrepareForSegueIfNeeded()
-#endif
 
         let customContext: Context
         if let context = context as? Context {
@@ -262,9 +260,7 @@ extension UIViewController {
 
         self.performSegueWithIdentifier(identifier, sender: sender)
 
-#if !DISABLE_SWIZZLING
         objc_sync_exit(self.dynamicType)
-#endif
     }
 
     public func presentViewControllerWithStoryboardName(storyboardName: String, identifier: String? = nil, bundle: NSBundle? = nil, animated: Bool = true, transitionStyle: UIModalTransitionStyle? = nil, context: Any? = nil, callback: Any? = nil) {
@@ -407,8 +403,6 @@ extension UIViewController {
 
 }
 
-#if !DISABLE_SWIZZLING
-
 // MARK: - Swizzling
 
 var swc_swizzled_already: UInt8 = 0
@@ -480,5 +474,3 @@ extension UIViewController {
     }
 
 }
-
-#endif
