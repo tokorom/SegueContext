@@ -188,7 +188,7 @@ let vc = UIViewController.viewControllerFromStoryboard(storyboard, context: 10) 
 
 [CocoaPods](http://cocoapods.org) is a dependency manager for Cocoa projects.
 
-CocoaPods 0.36 adds supports for Swift and embedded frameworks. You can install it with the following command:
+You can install it with the following command:
 
 ```bash
 $ gem install cocoapods
@@ -209,3 +209,28 @@ Then, run the following command:
 ```bash
 $ pod install
 ```
+
+### Carthage
+
+[Carthage](https://github.com/Carthage/Carthage) is a decentralized dependency manager that automates the process of adding frameworks to your Cocoa application.
+
+You can install Carthage with [Homebrew](http://brew.sh/) using the following command:
+
+```bash
+$ brew update
+$ brew install carthage
+```
+
+To integrate SegueContext into your Xcode project using Carthage, specify it in your `Cartfile`:
+
+```ogdl
+github "tokorom/SegueContext"
+```
+
+Then, run the following command:
+
+```bash
+$ carthage update
+```
+
+Then, link your app with `SegueContext.framework`.
