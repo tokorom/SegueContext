@@ -7,14 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F30BD66E1BBF72DA00F8CF6C /* SegueContext.h in Headers */ = {isa = PBXBuildFile; fileRef = F30BD66D1BBF72DA00F8CF6C /* SegueContext.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F30BD6721BBF72DA00F8CF6C /* SegueContext.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F30BD66B1BBF72DA00F8CF6C /* SegueContext.framework */; };
+		F30BD6731BBF72DA00F8CF6C /* SegueContext.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F30BD66B1BBF72DA00F8CF6C /* SegueContext.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F30BD67F1BBF738700F8CF6C /* SegueContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30BD67C1BBF738700F8CF6C /* SegueContext.swift */; settings = {ASSET_TAGS = (); }; };
+		F30BD6801BBF738700F8CF6C /* UIViewController+SegueContext.h in Headers */ = {isa = PBXBuildFile; fileRef = F30BD67D1BBF738700F8CF6C /* UIViewController+SegueContext.h */; settings = {ASSET_TAGS = (); }; };
+		F30BD6811BBF738700F8CF6C /* UIViewController+SegueContext.m in Sources */ = {isa = PBXBuildFile; fileRef = F30BD67E1BBF738700F8CF6C /* UIViewController+SegueContext.m */; settings = {ASSET_TAGS = (); }; };
 		F35399AF1B54D14800B7CB15 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35399AE1B54D14800B7CB15 /* AppDelegate.swift */; };
 		F35399B11B54D14800B7CB15 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35399B01B54D14800B7CB15 /* ViewController.swift */; };
 		F35399B41B54D14800B7CB15 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F35399B21B54D14800B7CB15 /* Main.storyboard */; };
 		F35399B61B54D14800B7CB15 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F35399B51B54D14800B7CB15 /* Images.xcassets */; };
 		F35399B91B54D14800B7CB15 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = F35399B71B54D14800B7CB15 /* LaunchScreen.xib */; };
-		F35399C51B54D14800B7CB15 /* SegueContextTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35399C41B54D14800B7CB15 /* SegueContextTests.swift */; };
-		F35399D21B54D2F200B7CB15 /* SegueContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35399CF1B54D2F200B7CB15 /* SegueContext.swift */; };
-		F35399D31B54D2F200B7CB15 /* UIViewController+SegueContext.m in Sources */ = {isa = PBXBuildFile; fileRef = F35399D11B54D2F200B7CB15 /* UIViewController+SegueContext.m */; };
 		F35399D51B54EAD200B7CB15 /* SliderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35399D41B54EAD200B7CB15 /* SliderViewController.swift */; };
 		F35399D71B54F0E900B7CB15 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35399D61B54F0E900B7CB15 /* ListViewController.swift */; };
 		F3D832301B773DFC00AD489C /* ChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D8322E1B773DFC00AD489C /* ChildViewController.swift */; };
@@ -22,16 +25,36 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		F35399BF1B54D14800B7CB15 /* PBXContainerItemProxy */ = {
+		F30BD6701BBF72DA00F8CF6C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = F35399A11B54D14800B7CB15 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = F35399A81B54D14800B7CB15;
+			remoteGlobalIDString = F30BD66A1BBF72DA00F8CF6C;
 			remoteInfo = SegueContext;
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		F30BD6771BBF72DA00F8CF6C /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				F30BD6731BBF72DA00F8CF6C /* SegueContext.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		F30BD66B1BBF72DA00F8CF6C /* SegueContext.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SegueContext.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F30BD66D1BBF72DA00F8CF6C /* SegueContext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SegueContext.h; sourceTree = "<group>"; };
+		F30BD66F1BBF72DA00F8CF6C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F30BD67C1BBF738700F8CF6C /* SegueContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegueContext.swift; sourceTree = "<group>"; };
+		F30BD67D1BBF738700F8CF6C /* UIViewController+SegueContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+SegueContext.h"; sourceTree = "<group>"; };
+		F30BD67E1BBF738700F8CF6C /* UIViewController+SegueContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+SegueContext.m"; sourceTree = "<group>"; };
 		F35399A91B54D14800B7CB15 /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F35399AD1B54D14800B7CB15 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F35399AE1B54D14800B7CB15 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -39,12 +62,6 @@
 		F35399B31B54D14800B7CB15 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F35399B51B54D14800B7CB15 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		F35399B81B54D14800B7CB15 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		F35399BE1B54D14800B7CB15 /* SegueContextTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SegueContextTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		F35399C31B54D14800B7CB15 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F35399C41B54D14800B7CB15 /* SegueContextTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegueContextTests.swift; sourceTree = "<group>"; };
-		F35399CF1B54D2F200B7CB15 /* SegueContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegueContext.swift; sourceTree = "<group>"; };
-		F35399D01B54D2F200B7CB15 /* UIViewController+SegueContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+SegueContext.h"; sourceTree = "<group>"; };
-		F35399D11B54D2F200B7CB15 /* UIViewController+SegueContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+SegueContext.m"; sourceTree = "<group>"; };
 		F35399D41B54EAD200B7CB15 /* SliderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SliderViewController.swift; sourceTree = "<group>"; };
 		F35399D61B54F0E900B7CB15 /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		F3D8322E1B773DFC00AD489C /* ChildViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChildViewController.swift; sourceTree = "<group>"; };
@@ -52,29 +69,49 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		F35399A61B54D14800B7CB15 /* Frameworks */ = {
+		F30BD6671BBF72DA00F8CF6C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F35399BB1B54D14800B7CB15 /* Frameworks */ = {
+		F35399A61B54D14800B7CB15 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F30BD6721BBF72DA00F8CF6C /* SegueContext.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F30BD66C1BBF72DA00F8CF6C /* SegueContext */ = {
+			isa = PBXGroup;
+			children = (
+				F30BD67B1BBF738700F8CF6C /* Source */,
+				F30BD66D1BBF72DA00F8CF6C /* SegueContext.h */,
+				F30BD66F1BBF72DA00F8CF6C /* Info.plist */,
+			);
+			path = SegueContext;
+			sourceTree = "<group>";
+		};
+		F30BD67B1BBF738700F8CF6C /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				F30BD67C1BBF738700F8CF6C /* SegueContext.swift */,
+				F30BD67D1BBF738700F8CF6C /* UIViewController+SegueContext.h */,
+				F30BD67E1BBF738700F8CF6C /* UIViewController+SegueContext.m */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
 		F35399A01B54D14800B7CB15 = {
 			isa = PBXGroup;
 			children = (
-				F35399CE1B54D2F200B7CB15 /* Source */,
+				F30BD66C1BBF72DA00F8CF6C /* SegueContext */,
 				F35399AB1B54D14800B7CB15 /* Example */,
-				F35399C11B54D14800B7CB15 /* SegueContextTests */,
 				F35399AA1B54D14800B7CB15 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -83,7 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				F35399A91B54D14800B7CB15 /* Example.app */,
-				F35399BE1B54D14800B7CB15 /* SegueContextTests.xctest */,
+				F30BD66B1BBF72DA00F8CF6C /* SegueContext.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -113,36 +150,39 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		F35399C11B54D14800B7CB15 /* SegueContextTests */ = {
-			isa = PBXGroup;
-			children = (
-				F35399C41B54D14800B7CB15 /* SegueContextTests.swift */,
-				F35399C21B54D14800B7CB15 /* Supporting Files */,
-			);
-			path = SegueContextTests;
-			sourceTree = "<group>";
-		};
-		F35399C21B54D14800B7CB15 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				F35399C31B54D14800B7CB15 /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		F35399CE1B54D2F200B7CB15 /* Source */ = {
-			isa = PBXGroup;
-			children = (
-				F35399CF1B54D2F200B7CB15 /* SegueContext.swift */,
-				F35399D01B54D2F200B7CB15 /* UIViewController+SegueContext.h */,
-				F35399D11B54D2F200B7CB15 /* UIViewController+SegueContext.m */,
-			);
-			path = Source;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		F30BD6681BBF72DA00F8CF6C /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F30BD66E1BBF72DA00F8CF6C /* SegueContext.h in Headers */,
+				F30BD6801BBF738700F8CF6C /* UIViewController+SegueContext.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
+		F30BD66A1BBF72DA00F8CF6C /* SegueContext */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F30BD6761BBF72DA00F8CF6C /* Build configuration list for PBXNativeTarget "SegueContext" */;
+			buildPhases = (
+				F30BD6661BBF72DA00F8CF6C /* Sources */,
+				F30BD6671BBF72DA00F8CF6C /* Frameworks */,
+				F30BD6681BBF72DA00F8CF6C /* Headers */,
+				F30BD6691BBF72DA00F8CF6C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SegueContext;
+			productName = SegueContext;
+			productReference = F30BD66B1BBF72DA00F8CF6C /* SegueContext.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 		F35399A81B54D14800B7CB15 /* Example */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = F35399C81B54D14800B7CB15 /* Build configuration list for PBXNativeTarget "Example" */;
@@ -150,33 +190,17 @@
 				F35399A51B54D14800B7CB15 /* Sources */,
 				F35399A61B54D14800B7CB15 /* Frameworks */,
 				F35399A71B54D14800B7CB15 /* Resources */,
+				F30BD6771BBF72DA00F8CF6C /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				F30BD6711BBF72DA00F8CF6C /* PBXTargetDependency */,
 			);
 			name = Example;
 			productName = SegueContext;
 			productReference = F35399A91B54D14800B7CB15 /* Example.app */;
 			productType = "com.apple.product-type.application";
-		};
-		F35399BD1B54D14800B7CB15 /* SegueContextTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = F35399CB1B54D14800B7CB15 /* Build configuration list for PBXNativeTarget "SegueContextTests" */;
-			buildPhases = (
-				F35399BA1B54D14800B7CB15 /* Sources */,
-				F35399BB1B54D14800B7CB15 /* Frameworks */,
-				F35399BC1B54D14800B7CB15 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				F35399C01B54D14800B7CB15 /* PBXTargetDependency */,
-			);
-			name = SegueContextTests;
-			productName = SegueContextTests;
-			productReference = F35399BE1B54D14800B7CB15 /* SegueContextTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -185,15 +209,14 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0630;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = tokoro;
 				TargetAttributes = {
+					F30BD66A1BBF72DA00F8CF6C = {
+						CreatedOnToolsVersion = 7.0;
+					};
 					F35399A81B54D14800B7CB15 = {
 						CreatedOnToolsVersion = 6.3.2;
-					};
-					F35399BD1B54D14800B7CB15 = {
-						CreatedOnToolsVersion = 6.3.2;
-						TestTargetID = F35399A81B54D14800B7CB15;
 					};
 				};
 			};
@@ -210,13 +233,20 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
+				F30BD66A1BBF72DA00F8CF6C /* SegueContext */,
 				F35399A81B54D14800B7CB15 /* Example */,
-				F35399BD1B54D14800B7CB15 /* SegueContextTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		F30BD6691BBF72DA00F8CF6C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F35399A71B54D14800B7CB15 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -227,46 +257,38 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F35399BC1B54D14800B7CB15 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		F30BD6661BBF72DA00F8CF6C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F30BD6811BBF738700F8CF6C /* UIViewController+SegueContext.m in Sources */,
+				F30BD67F1BBF738700F8CF6C /* SegueContext.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F35399A51B54D14800B7CB15 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				F3D832301B773DFC00AD489C /* ChildViewController.swift in Sources */,
-				F35399D31B54D2F200B7CB15 /* UIViewController+SegueContext.m in Sources */,
 				F35399D51B54EAD200B7CB15 /* SliderViewController.swift in Sources */,
 				F35399D71B54F0E900B7CB15 /* ListViewController.swift in Sources */,
 				F35399B11B54D14800B7CB15 /* ViewController.swift in Sources */,
 				F35399AF1B54D14800B7CB15 /* AppDelegate.swift in Sources */,
 				F3D832311B773DFC00AD489C /* ParentViewController.swift in Sources */,
-				F35399D21B54D2F200B7CB15 /* SegueContext.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F35399BA1B54D14800B7CB15 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F35399C51B54D14800B7CB15 /* SegueContextTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		F35399C01B54D14800B7CB15 /* PBXTargetDependency */ = {
+		F30BD6711BBF72DA00F8CF6C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = F35399A81B54D14800B7CB15 /* Example */;
-			targetProxy = F35399BF1B54D14800B7CB15 /* PBXContainerItemProxy */;
+			target = F30BD66A1BBF72DA00F8CF6C /* SegueContext */;
+			targetProxy = F30BD6701BBF72DA00F8CF6C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -290,6 +312,50 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		F30BD6741BBF72DA00F8CF6C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_TESTABILITY = YES;
+				INFOPLIST_FILE = SegueContext/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = me.tokoro.SegueContext;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		F30BD6751BBF72DA00F8CF6C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = SegueContext/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = me.tokoro.SegueContext;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		F35399C61B54D14800B7CB15 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -311,6 +377,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -375,8 +442,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = Example/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "me.tokoro.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -385,49 +454,25 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = Example/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "me.tokoro.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
-		F35399CC1B54D14800B7CB15 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = SegueContextTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SegueContext.app/SegueContext";
-			};
-			name = Debug;
-		};
-		F35399CD1B54D14800B7CB15 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = SegueContextTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SegueContext.app/SegueContext";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		F30BD6761BBF72DA00F8CF6C /* Build configuration list for PBXNativeTarget "SegueContext" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F30BD6741BBF72DA00F8CF6C /* Debug */,
+				F30BD6751BBF72DA00F8CF6C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		F35399A41B54D14800B7CB15 /* Build configuration list for PBXProject "SegueContext" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -442,15 +487,6 @@
 			buildConfigurations = (
 				F35399C91B54D14800B7CB15 /* Debug */,
 				F35399CA1B54D14800B7CB15 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		F35399CB1B54D14800B7CB15 /* Build configuration list for PBXNativeTarget "SegueContextTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				F35399CC1B54D14800B7CB15 /* Debug */,
-				F35399CD1B54D14800B7CB15 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
