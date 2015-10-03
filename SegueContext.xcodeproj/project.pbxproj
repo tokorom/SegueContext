@@ -11,8 +11,6 @@
 		F30BD6721BBF72DA00F8CF6C /* SegueContext.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F30BD66B1BBF72DA00F8CF6C /* SegueContext.framework */; };
 		F30BD6731BBF72DA00F8CF6C /* SegueContext.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F30BD66B1BBF72DA00F8CF6C /* SegueContext.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F30BD67F1BBF738700F8CF6C /* SegueContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30BD67C1BBF738700F8CF6C /* SegueContext.swift */; settings = {ASSET_TAGS = (); }; };
-		F30BD6801BBF738700F8CF6C /* UIViewController+SegueContext.h in Headers */ = {isa = PBXBuildFile; fileRef = F30BD67D1BBF738700F8CF6C /* UIViewController+SegueContext.h */; settings = {ASSET_TAGS = (); }; };
-		F30BD6811BBF738700F8CF6C /* UIViewController+SegueContext.m in Sources */ = {isa = PBXBuildFile; fileRef = F30BD67E1BBF738700F8CF6C /* UIViewController+SegueContext.m */; settings = {ASSET_TAGS = (); }; };
 		F35399AF1B54D14800B7CB15 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35399AE1B54D14800B7CB15 /* AppDelegate.swift */; };
 		F35399B11B54D14800B7CB15 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35399B01B54D14800B7CB15 /* ViewController.swift */; };
 		F35399B41B54D14800B7CB15 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F35399B21B54D14800B7CB15 /* Main.storyboard */; };
@@ -53,8 +51,6 @@
 		F30BD66D1BBF72DA00F8CF6C /* SegueContext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SegueContext.h; sourceTree = "<group>"; };
 		F30BD66F1BBF72DA00F8CF6C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F30BD67C1BBF738700F8CF6C /* SegueContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegueContext.swift; sourceTree = "<group>"; };
-		F30BD67D1BBF738700F8CF6C /* UIViewController+SegueContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+SegueContext.h"; sourceTree = "<group>"; };
-		F30BD67E1BBF738700F8CF6C /* UIViewController+SegueContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+SegueContext.m"; sourceTree = "<group>"; };
 		F35399A91B54D14800B7CB15 /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F35399AD1B54D14800B7CB15 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F35399AE1B54D14800B7CB15 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -101,8 +97,6 @@
 			isa = PBXGroup;
 			children = (
 				F30BD67C1BBF738700F8CF6C /* SegueContext.swift */,
-				F30BD67D1BBF738700F8CF6C /* UIViewController+SegueContext.h */,
-				F30BD67E1BBF738700F8CF6C /* UIViewController+SegueContext.m */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -158,7 +152,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F30BD66E1BBF72DA00F8CF6C /* SegueContext.h in Headers */,
-				F30BD6801BBF738700F8CF6C /* UIViewController+SegueContext.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -264,7 +257,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F30BD6811BBF738700F8CF6C /* UIViewController+SegueContext.m in Sources */,
 				F30BD67F1BBF738700F8CF6C /* SegueContext.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
