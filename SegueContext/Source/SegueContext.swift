@@ -169,9 +169,9 @@ extension UIViewController {
         }
         set {
             if let context = newValue {
-                objc_setAssociatedObject(self, &CustomProperty.context, context, .objc_ASSOCIATION_RETAIN)
+                objc_setAssociatedObject(self, &CustomProperty.context, context, .OBJC_ASSOCIATION_RETAIN)
             } else {
-                objc_setAssociatedObject(self, &CustomProperty.context, nil, .objc_ASSOCIATION_RETAIN)
+                objc_setAssociatedObject(self, &CustomProperty.context, nil, .OBJC_ASSOCIATION_RETAIN)
             }
         }
     }
@@ -189,9 +189,9 @@ extension UIViewController {
         }
         set {
             if let context = newValue {
-                objc_setAssociatedObject(self, &CustomProperty.callback, context, .objc_ASSOCIATION_RETAIN)
+                objc_setAssociatedObject(self, &CustomProperty.callback, context, .OBJC_ASSOCIATION_RETAIN)
             } else {
-                objc_setAssociatedObject(self, &CustomProperty.callback, nil, .objc_ASSOCIATION_RETAIN)
+                objc_setAssociatedObject(self, &CustomProperty.callback, nil, .OBJC_ASSOCIATION_RETAIN)
             }
         }
     }
@@ -207,9 +207,9 @@ extension UIViewController {
         }
         set {
             if let context = newValue {
-                objc_setAssociatedObject(self, &CustomProperty.sendContext, context, .objc_ASSOCIATION_RETAIN)
+                objc_setAssociatedObject(self, &CustomProperty.sendContext, context, .OBJC_ASSOCIATION_RETAIN)
             } else {
-                objc_setAssociatedObject(self, &CustomProperty.sendContext, nil, .objc_ASSOCIATION_RETAIN)
+                objc_setAssociatedObject(self, &CustomProperty.sendContext, nil, .OBJC_ASSOCIATION_RETAIN)
             }
         }
     }
@@ -225,9 +225,9 @@ extension UIViewController {
         }
         set {
             if let context = newValue {
-                objc_setAssociatedObject(self, &CustomProperty.sendCallback, context, .objc_ASSOCIATION_RETAIN)
+                objc_setAssociatedObject(self, &CustomProperty.sendCallback, context, .OBJC_ASSOCIATION_RETAIN)
             } else {
-                objc_setAssociatedObject(self, &CustomProperty.sendCallback, nil, .objc_ASSOCIATION_RETAIN)
+                objc_setAssociatedObject(self, &CustomProperty.sendCallback, nil, .OBJC_ASSOCIATION_RETAIN)
             }
         }
     }
@@ -413,7 +413,7 @@ extension UIViewController {
         if let segueIdentifier = segue.identifier  {
             let viewController = segue.destinationViewController
             let sendContext: (Any?) -> Void = { context in
-                viewController.sendContext(context)
+                let _ = viewController.sendContext(context)
             }
             callback(segueIdentifier, viewController, sendContext)
         }
@@ -421,8 +421,8 @@ extension UIViewController {
 
     class func replacePrepareForSegueIfNeeded() {
         if nil == objc_getAssociatedObject(self, &swc_swizzled_already) {
-            objc_setAssociatedObject(self, &swc_swizzled_already, NSNumber(value: true), .objc_ASSOCIATION_RETAIN_NONATOMIC)
-            let original = class_getInstanceMethod(self, #selector(prepare(`for`:sender:)(_:sender:)))
+            objc_setAssociatedObject(self, &swc_swizzled_already, NSNumber(value: true), .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            let original = class_getInstanceMethod(self, #selector(prepare(for:sender:)))
             let replaced = class_getInstanceMethod(self, #selector(swc_wrapped_prepareForSegue(_:sender:)))
             method_exchangeImplementations(original, replaced)
         }
@@ -430,8 +430,8 @@ extension UIViewController {
 
     class func revertReplacedPrepareForSegueIfNeeded() {
         if nil != objc_getAssociatedObject(self, &swc_swizzled_already) {
-            objc_setAssociatedObject(self, &swc_swizzled_already, nil, .objc_ASSOCIATION_RETAIN_NONATOMIC)
-            let original = class_getInstanceMethod(self, #selector(prepare(`for`:sender:)(_:sender:)))
+            objc_setAssociatedObject(self, &swc_swizzled_already, nil, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            let original = class_getInstanceMethod(self, #selector(prepare(for:sender:)))
             let replaced = class_getInstanceMethod(self, #selector(swc_wrapped_prepareForSegue(_:sender:)))
             method_exchangeImplementations(original, replaced)
         }
