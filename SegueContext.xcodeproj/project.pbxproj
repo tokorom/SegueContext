@@ -10,7 +10,7 @@
 		F30BD66E1BBF72DA00F8CF6C /* SegueContext.h in Headers */ = {isa = PBXBuildFile; fileRef = F30BD66D1BBF72DA00F8CF6C /* SegueContext.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F30BD6721BBF72DA00F8CF6C /* SegueContext.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F30BD66B1BBF72DA00F8CF6C /* SegueContext.framework */; };
 		F30BD6731BBF72DA00F8CF6C /* SegueContext.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F30BD66B1BBF72DA00F8CF6C /* SegueContext.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		F30BD67F1BBF738700F8CF6C /* SegueContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30BD67C1BBF738700F8CF6C /* SegueContext.swift */; settings = {ASSET_TAGS = (); }; };
+		F30BD67F1BBF738700F8CF6C /* SegueContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30BD67C1BBF738700F8CF6C /* SegueContext.swift */; };
 		F35399AF1B54D14800B7CB15 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35399AE1B54D14800B7CB15 /* AppDelegate.swift */; };
 		F35399B11B54D14800B7CB15 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35399B01B54D14800B7CB15 /* ViewController.swift */; };
 		F35399B41B54D14800B7CB15 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F35399B21B54D14800B7CB15 /* Main.storyboard */; };
@@ -207,9 +207,11 @@
 				TargetAttributes = {
 					F30BD66A1BBF72DA00F8CF6C = {
 						CreatedOnToolsVersion = 7.0;
+						LastSwiftMigration = 0800;
 					};
 					F35399A81B54D14800B7CB15 = {
 						CreatedOnToolsVersion = 6.3.2;
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -321,6 +323,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = me.tokoro.SegueContext;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -342,6 +345,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = me.tokoro.SegueContext;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -439,6 +443,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "me.tokoro.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -451,6 +456,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "me.tokoro.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -464,6 +470,7 @@
 				F30BD6751BBF72DA00F8CF6C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F35399A41B54D14800B7CB15 /* Build configuration list for PBXProject "SegueContext" */ = {
 			isa = XCConfigurationList;

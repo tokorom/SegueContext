@@ -29,18 +29,18 @@ class SliderViewController: UIViewController {
         }
     }
 
-    @IBAction func sliderDidChange(slider: UISlider) {
+    @IBAction func sliderDidChange(_ slider: UISlider) {
         self.value = Int(slider.value)
     }
 
-    @IBAction func buttonDidTap(sender: AnyObject) {
+    @IBAction func buttonDidTap(_ sender: AnyObject) {
         if let callback: (Int) -> Void = self.callback() {
             callback(self.value)
         }
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
 
-    @IBAction func othersButtonDidTap(sender: AnyObject) {
+    @IBAction func othersButtonDidTap(_ sender: AnyObject) {
         self.presentViewControllerWithIdentifier("NavigationController", context: context, callback: self.rawCallback)
     }
 }

@@ -36,8 +36,8 @@ class ListViewController: UITableViewController {
         }
     }
 
-    func valueWithIndexPath(indexPath: NSIndexPath) -> Int {
-        return self.value + (indexPath.row + 1) * self.multiplier
+    func valueWithIndexPath(_ indexPath: IndexPath) -> Int {
+        return self.value + ((indexPath as NSIndexPath).row + 1) * self.multiplier
     }
     
 }
@@ -46,16 +46,16 @@ class ListViewController: UITableViewController {
 
 extension ListViewController {
 
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        switch indexPath.section {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch (indexPath as NSIndexPath).section {
         case 1:
             if let callback: (Int) -> Void = self.callback() {
                 let value = self.valueWithIndexPath(indexPath)
                 callback(value)
             }
             let presentingVC = self.presentingViewController
-            self.dismissViewControllerAnimated(true) { _ -> Void in
-                presentingVC?.dismissViewControllerAnimated(true, completion: nil)
+            self.dismiss(animated: true) { _ -> Void in
+                presentingVC?.dismiss(animated: true, completion: nil)
             }
         case 2:
             let context = MyContext(value: self.value, multiplier: self.multiplier * 2)
@@ -64,11 +64,11 @@ extension ListViewController {
             break
         }
 
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 
-    override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-        switch indexPath.section {
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        switch (indexPath as NSIndexPath).section {
         case 1:
             cell.textLabel?.text = String(self.valueWithIndexPath(indexPath))
         default:
