@@ -449,7 +449,7 @@ extension UIViewController {
     func revertReplacedPrepareForSegueIfNeeded() {
         self.dynamicType.revertReplacedPrepareForSegueIfNeeded()
     }
-    
+
     func swc_wrapped_prepareForSegue(_ segue: UIStoryboardSegue, sender: AnyObject?) {
         self.swc_wrapped_prepareForSegue(segue, sender: sender)
         self.swc_prepareForSegue(segue, sender: sender)
