@@ -296,33 +296,38 @@ extension UIViewController {
         self.presentViewControllerWithType(type, storyboard: storyboard, identifier: identifier, animated: animated, transitionStyle: transitionStyle, context: context, callback: callback)
     }
 
-    public func presentViewControllerWithType(_ type: PresentType, storyboard: UIStoryboard, identifier: String? = nil, animated: Bool = true, transitionStyle: UIModalTransitionStyle? = nil, context: Any? = nil, callback: Any? = nil) {
-        if let viewController = UIViewController.viewControllerFromStoryboard(storyboard, identifier: identifier, context: context, callback: callback) {
-            switch type {
-            case .push:
-                var navigationController: UINavigationController?
-                if let navi = self.navigationController {
-                    navigationController = navi
-                } else if let navi = self.parent as? UINavigationController {
-                    navigationController = navi
-                } else if let navi = self.presentingViewController as? UINavigationController {
-                    navigationController = navi
-                } else if let tabBarController = self as? UITabBarController {
-                    if let navi = tabBarController.selectedViewController as? UINavigationController {
-                        navigationController = navi
-                    } else if let navi = tabBarController.selectedViewController?.navigationController {
-                        navigationController = navi
-                    }
-                }
-                navigationController?.pushViewController(viewController, animated: animated)
-            case .custom(let customFunction):
-                customFunction(viewController)
-            default:
-                if let transitionStyle = transitionStyle {
-                    viewController.modalTransitionStyle = transitionStyle
-                }
-                self.present(viewController, animated: animated, completion: nil)
+    private var _navigationController: UINavigationController? {
+        if let navi = self.navigationController {
+            return navi
+        } else if let navi = self.parent as? UINavigationController {
+            return navi
+        } else if let navi = self.presentingViewController as? UINavigationController {
+            return navi
+        } else if let tabBarController = self as? UITabBarController {
+            if let navi = tabBarController.selectedViewController as? UINavigationController {
+                return navi
+            } else if let navi = tabBarController.selectedViewController?.navigationController {
+                return navi
             }
+        }
+        return nil
+    }
+
+    public func presentViewControllerWithType(_ type: PresentType, storyboard: UIStoryboard, identifier: String? = nil, animated: Bool = true, transitionStyle: UIModalTransitionStyle? = nil, context: Any? = nil, callback: Any? = nil) {
+        guard let viewController = UIViewController.viewControllerFromStoryboard(storyboard, identifier: identifier, context: context, callback: callback) else {
+            return
+        }
+
+        switch type {
+        case .push:
+            _navigationController?.pushViewController(viewController, animated: animated)
+        case .custom(let customFunction):
+            customFunction(viewController)
+        default:
+            if let transitionStyle = transitionStyle {
+                viewController.modalTransitionStyle = transitionStyle
+            }
+            self.present(viewController, animated: animated, completion: nil)
         }
     }
 
@@ -405,12 +410,12 @@ extension UIViewController {
 
 // MARK: - Swizzling
 
-var swc_swizzled_already: UInt8 = 0
+var SWCSwizzledAlready: UInt8 = 0
 
 extension UIViewController {
 
     public func contextSenderForSegue(_ segue: UIStoryboardSegue, callback: (String, UIViewController, (Any?) -> Void) -> Void) {
-        if let segueIdentifier = segue.identifier  {
+        if let segueIdentifier = segue.identifier {
             let viewController = segue.destinationViewController
             let sendContext: (Any?) -> Void = { context in
                 let _ = viewController.sendContext(context)
@@ -420,8 +425,8 @@ extension UIViewController {
     }
 
     class func replacePrepareForSegueIfNeeded() {
-        if nil == objc_getAssociatedObject(self, &swc_swizzled_already) {
-            objc_setAssociatedObject(self, &swc_swizzled_already, NSNumber(value: true), .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        if nil == objc_getAssociatedObject(self, &SWCSwizzledAlready) {
+            objc_setAssociatedObject(self, &SWCSwizzledAlready, NSNumber(value: true), .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
             let original = class_getInstanceMethod(self, #selector(prepare(for:sender:)))
             let replaced = class_getInstanceMethod(self, #selector(swc_wrapped_prepareForSegue(_:sender:)))
             method_exchangeImplementations(original, replaced)
@@ -429,8 +434,8 @@ extension UIViewController {
     }
 
     class func revertReplacedPrepareForSegueIfNeeded() {
-        if nil != objc_getAssociatedObject(self, &swc_swizzled_already) {
-            objc_setAssociatedObject(self, &swc_swizzled_already, nil, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        if nil != objc_getAssociatedObject(self, &SWCSwizzledAlready) {
+            objc_setAssociatedObject(self, &SWCSwizzledAlready, nil, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
             let original = class_getInstanceMethod(self, #selector(prepare(for:sender:)))
             let replaced = class_getInstanceMethod(self, #selector(swc_wrapped_prepareForSegue(_:sender:)))
             method_exchangeImplementations(original, replaced)
