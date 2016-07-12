@@ -25,7 +25,7 @@ class ListViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+
         if let value: Int = self.contextValue() {
             self.value = value
         }
@@ -39,7 +39,7 @@ class ListViewController: UITableViewController {
     func valueWithIndexPath(_ indexPath: IndexPath) -> Int {
         return self.value + ((indexPath as NSIndexPath).row + 1) * self.multiplier
     }
-    
+
 }
 
 // MARK: - UITableViewDelegate
@@ -59,7 +59,7 @@ extension ListViewController {
             }
         case 2:
             let context = MyContext(value: self.value, multiplier: self.multiplier * 2)
-            self.pushViewControllerWithIdentifier("ListViewController", context: context, callback: self.rawCallback)
+            self.pushViewController(withViewControllerIdentifier: "ListViewController", context: context, callback: self.rawCallback)
         default:
             break
         }

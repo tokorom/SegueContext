@@ -7,7 +7,7 @@
 import UIKit
 
 class ParentViewController: UIViewController {
-    
+
     var value: Int = 0
 
     override func loadView() {
@@ -19,7 +19,7 @@ class ParentViewController: UIViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: AnyObject?) {
-        self.contextSenderForSegue(segue) { segueIdentifier, viewController, sendContext in
+        self.contextSender(forSegue: segue) { segueIdentifier, viewController, sendContext in
             switch segueIdentifier {
             case "Embedded1", "Embedded2":
                 sendContext(self.value)

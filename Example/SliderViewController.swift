@@ -20,7 +20,7 @@ class SliderViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+
         if let value: Int = self.contextValue() {
             self.value = value
             if let slider = self.slider {
@@ -41,6 +41,6 @@ class SliderViewController: UIViewController {
     }
 
     @IBAction func othersButtonDidTap(_ sender: AnyObject) {
-        self.presentViewControllerWithIdentifier("NavigationController", context: context, callback: self.rawCallback)
+        self.present(withViewControllerIdentifier: "NavigationController", context: context, callback: self.rawCallback)
     }
 }
