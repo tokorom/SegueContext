@@ -374,16 +374,19 @@ extension UIViewController {
         for viewController in viewController.childViewControllers {
             viewController.configureCustomContext(customContext)
         }
-        if let navi = viewController as? UINavigationController {
+        switch viewController {
+        case let navi as UINavigationController:
             if let viewController = navi.viewControllers.first {
                 viewController.configureCustomContext(customContext)
             }
-        } else if let tab = viewController as? UITabBarController {
+        case let tab as UITabBarController:
             if let viewControllers = tab.viewControllers {
                 for viewController in viewControllers {
                     viewController.configureCustomContext(customContext)
                 }
             }
+        default:
+            break
         }
     }
 
