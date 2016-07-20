@@ -464,7 +464,7 @@ extension UIViewController {
         let destination = segue.destinationViewController
         let source = segue.sourceViewController
         if let customContext = source.sendCustomContext {
-            if let targetIdentifier = customContext.segueIdentifier where targetIdentifier != segue.identifier {
+            if let targetIdentifier = customContext.segueIdentifier, targetIdentifier != segue.identifier {
                 return
             }
 
@@ -472,7 +472,7 @@ extension UIViewController {
             source.sendCustomContext = nil
         }
         if let customContextForCallback = source.sendCustomContextForCallback {
-            if let targetIdentifier = customContextForCallback.segueIdentifier where targetIdentifier != segue.identifier {
+            if let targetIdentifier = customContextForCallback.segueIdentifier, targetIdentifier != segue.identifier {
                 return
             }
 
