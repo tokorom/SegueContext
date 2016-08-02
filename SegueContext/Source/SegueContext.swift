@@ -419,7 +419,7 @@ extension UIViewController {
 
     public func contextSender(forSegue segue: UIStoryboardSegue, callback: (String, UIViewController, (Any?) -> Void) -> Void) {
         if let segueIdentifier = segue.identifier {
-            let viewController = segue.destinationViewController
+            let viewController = segue.destination
             let sendContext: (Any?) -> Void = { context in
                 let _ = viewController.sendContext(context)
             }
@@ -461,8 +461,8 @@ extension UIViewController {
     }
 
     func swc_prepareForSegue(_ segue: UIStoryboardSegue, sender: AnyObject?) {
-        let destination = segue.destinationViewController
-        let source = segue.sourceViewController
+        let destination = segue.destination
+        let source = segue.source
         if let customContext = source.sendCustomContext {
             if let targetIdentifier = customContext.segueIdentifier, targetIdentifier != segue.identifier {
                 return
