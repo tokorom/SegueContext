@@ -358,11 +358,11 @@ extension UIViewController {
         return viewController
     }
 
-    public func sendContext(_ object1: Any?, _ object2: Any?, _ object3: Any? = nil, _ object4: Any? = nil, _ object5: Any? = nil) -> Context {
+    @discardableResult public func sendContext(_ object1: Any?, _ object2: Any?, _ object3: Any? = nil, _ object4: Any? = nil, _ object5: Any? = nil) -> Context {
         return self.sendContext(toContext(object1, object2, object3, object4, object5))
     }
 
-    public func sendContext(_ object: Any?) -> Context {
+    @discardableResult public func sendContext(_ object: Any?) -> Context {
         let context = toContext(object)
         self.configureCustomContext(context)
         return context
