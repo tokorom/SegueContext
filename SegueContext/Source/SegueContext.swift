@@ -31,7 +31,7 @@ public class Context {
         self.callback = anyCallback
     }
 
-    public convenience init<T, A, R>(object: T?, callback: (A) -> R) {
+    public convenience init<T, A, R>(object: T?, callback: @escaping (A) -> R) {
         self.init(object: object)
         self.callback = callback
     }
@@ -147,7 +147,7 @@ extension UIViewController {
         }
     }
 
-    public private(set) var context: Context? {
+    public fileprivate(set) var context: Context? {
         get {
             return self.customContext
         }
@@ -156,9 +156,9 @@ extension UIViewController {
         }
     }
 
-    private var customContext: Context? {
+    fileprivate var customContext: Context? {
         get {
-            if let object: AnyObject = objc_getAssociatedObject(self, &CustomProperty.context) {
+            if let object: AnyObject = objc_getAssociatedObject(self, &CustomProperty.context) as AnyObject? {
                 if let context = object as? Context {
                     return context
                 } else {
@@ -176,9 +176,9 @@ extension UIViewController {
         }
     }
 
-    private var customContextForCallback: Context? {
+    fileprivate var customContextForCallback: Context? {
         get {
-            if let object: AnyObject = objc_getAssociatedObject(self, &CustomProperty.callback) {
+            if let object: AnyObject = objc_getAssociatedObject(self, &CustomProperty.callback) as AnyObject? {
                 if let context = object as? Context {
                     return context
                 } else {
@@ -196,9 +196,9 @@ extension UIViewController {
         }
     }
 
-    private var sendCustomContext: Context? {
+    fileprivate var sendCustomContext: Context? {
         get {
-            if let object: AnyObject = objc_getAssociatedObject(self, &CustomProperty.sendContext) {
+            if let object: AnyObject = objc_getAssociatedObject(self, &CustomProperty.sendContext) as AnyObject? {
                 if let context = object as? Context {
                     return context
                 }
@@ -214,9 +214,9 @@ extension UIViewController {
         }
     }
 
-    private var sendCustomContextForCallback: Context? {
+    fileprivate var sendCustomContextForCallback: Context? {
         get {
-            if let object: AnyObject = objc_getAssociatedObject(self, &CustomProperty.sendCallback) {
+            if let object: AnyObject = objc_getAssociatedObject(self, &CustomProperty.sendCallback) as AnyObject? {
                 if let context = object as? Context {
                     return context
                 }
@@ -241,7 +241,7 @@ extension UIViewController {
     }
 
     public func performSegue(withIdentifier identifier: String, sender: AnyObject? = nil, context: Any?, callback: Any?) {
-        objc_sync_enter(self.dynamicType)
+        objc_sync_enter(type(of: self))
 
         self.replacePrepareForSegueIfNeeded()
 
@@ -260,10 +260,10 @@ extension UIViewController {
 
         self.performSegue(withIdentifier: identifier, sender: sender)
 
-        objc_sync_exit(self.dynamicType)
+        objc_sync_exit(type(of: self))
     }
 
-    public func present(storyboardName: String, viewControllerIdentifier: String? = nil, bundle: Bundle? = nil, animated: Bool = true, transitionStyle: UIModalTransitionStyle? = nil, context: Any? = nil, callback: Any? = nil) {
+    public func present(_ storyboardName: String, viewControllerIdentifier: String? = nil, bundle: Bundle? = nil, animated: Bool = true, transitionStyle: UIModalTransitionStyle? = nil, context: Any? = nil, callback: Any? = nil) {
         self.present(presentType: .popup, storyboardName: storyboardName, viewControllerIdentifier: viewControllerIdentifier, bundle: bundle, animated: animated, transitionStyle: transitionStyle, context: context, callback: callback)
     }
 
@@ -273,7 +273,7 @@ extension UIViewController {
         }
     }
 
-    public func present(storyboard: UIStoryboard, viewControllerIdentifier: String? = nil, animated: Bool = true, transitionStyle: UIModalTransitionStyle? = nil, context: Any? = nil, callback: Any? = nil) {
+    public func present(_ storyboard: UIStoryboard, viewControllerIdentifier: String? = nil, animated: Bool = true, transitionStyle: UIModalTransitionStyle? = nil, context: Any? = nil, callback: Any? = nil) {
         self.present(presentType: .popup, storyboard: storyboard, viewControllerIdentifier: viewControllerIdentifier, animated: animated, transitionStyle: transitionStyle, context: context, callback: callback)
     }
 
@@ -296,7 +296,7 @@ extension UIViewController {
         self.present(presentType: type, storyboard: storyboard, viewControllerIdentifier: viewControllerIdentifier, animated: animated, transitionStyle: transitionStyle, context: context, callback: callback)
     }
 
-    private var _navigationController: UINavigationController? {
+    fileprivate var _navigationController: UINavigationController? {
         if let navi = self.navigationController {
             return navi
         } else if let navi = self.parent as? UINavigationController {
@@ -368,7 +368,7 @@ extension UIViewController {
         return context
     }
 
-    private func configureCustomContext(_ customContext: Context) {
+    fileprivate func configureCustomContext(_ customContext: Context) {
         let viewController = self
         viewController.customContext = customContext
         for viewController in viewController.childViewControllers {
@@ -390,7 +390,7 @@ extension UIViewController {
         }
     }
 
-    private func configureCustomContext(forCallback customContextForCallback: Context) {
+    fileprivate func configureCustomContext(forCallback customContextForCallback: Context) {
         let viewController = self
         viewController.customContextForCallback = customContextForCallback
         for viewController in viewController.childViewControllers {
@@ -446,11 +446,11 @@ extension UIViewController {
     }
 
     func replacePrepareForSegueIfNeeded() {
-        self.dynamicType.replacePrepareForSegueIfNeeded()
+        type(of: self).replacePrepareForSegueIfNeeded()
     }
 
     func revertReplacedPrepareForSegueIfNeeded() {
-        self.dynamicType.revertReplacedPrepareForSegueIfNeeded()
+        type(of: self).revertReplacedPrepareForSegueIfNeeded()
     }
 
     func swc_wrapped_prepareForSegue(_ segue: UIStoryboardSegue, sender: AnyObject?) {
