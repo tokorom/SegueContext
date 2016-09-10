@@ -10,20 +10,17 @@ import SegueContext
 class ViewController: UIViewController {
 
     var value: Int = 10 {
-        didSet {
-            self.label?.text = String(self.value)
+        willSet(value) {
+            label?.text = String(value)
         }
     }
 
     @IBOutlet weak var label: UILabel?
 
     @IBAction func buttonDidTap(_ sender: AnyObject) {
-        /* self.performSegue(withIdentifier: "Tab", context: self.value) { (value: Int) -> Void in
-            self.value = value
-        } */
-        self.performSegue(withIdentifier: "Tab", context: self.value, callback: { (value: Int) -> Void in
-            self.value = value
-        } as Any?)
+        performSegue(withIdentifier: "Tab", context: self.value) { [weak self] (value: Int) -> Void in
+            self?.value = value
+        }
     }
 
 }

@@ -59,7 +59,7 @@ extension ListViewController {
             }
         case 2:
             let context = MyContext(value: self.value, multiplier: self.multiplier * 2)
-            self.pushViewController(withViewControllerIdentifier: "ListViewController", context: context, callback: self.rawCallback)
+            self.relayPushViewController(viewControllerIdentifier: "ListViewController", context: context, anyCallback: self.anyCallback)
         default:
             break
         }
