@@ -359,7 +359,7 @@ extension UIViewController {
         relayPresent(presentType: type, storyboard: storyboard, viewControllerIdentifier: viewControllerIdentifier, animated: animated, transitionStyle: transitionStyle, context: context, anyCallback: anyCallback)
     }
 
-    fileprivate var _navigationController: UINavigationController? {
+    fileprivate var scNavigationController: UINavigationController? {
         if let navi = navigationController {
             return navi
         } else if let navi = parent as? UINavigationController {
@@ -391,7 +391,7 @@ extension UIViewController {
 
         switch type {
         case .push:
-            _navigationController?.pushViewController(viewController, animated: animated)
+            scNavigationController?.pushViewController(viewController, animated: animated)
         case .custom(let customFunction):
             customFunction(viewController)
         default:
