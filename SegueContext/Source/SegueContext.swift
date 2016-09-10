@@ -263,6 +263,10 @@ extension UIViewController {
         present(presentType: .popup, storyboardName: storyboardName, viewControllerIdentifier: viewControllerIdentifier, bundle: bundle, animated: animated, transitionStyle: transitionStyle, context: context, callback: callback)
     }
 
+    public func present(storyboardName: String, viewControllerIdentifier: String? = nil, bundle: Bundle? = nil, animated: Bool = true, transitionStyle: UIModalTransitionStyle? = nil, context: Any? = nil) {
+        relayPresent(presentType: .popup, storyboardName: storyboardName, viewControllerIdentifier: viewControllerIdentifier, bundle: bundle, animated: animated, transitionStyle: transitionStyle, context: context, anyCallback: nil)
+    }
+
     public func relayPresent(storyboardName: String, viewControllerIdentifier: String? = nil, bundle: Bundle? = nil, animated: Bool = true, transitionStyle: UIModalTransitionStyle? = nil, context: Any? = nil, anyCallback: Any? = nil) {
         relayPresent(presentType: .popup, storyboardName: storyboardName, viewControllerIdentifier: viewControllerIdentifier, bundle: bundle, animated: animated, transitionStyle: transitionStyle, context: context, anyCallback: anyCallback)
     }
@@ -272,6 +276,13 @@ extension UIViewController {
             return
         }
         present(storyboard: storyboard, viewControllerIdentifier: viewControllerIdentifier, animated: animated, transitionStyle: transitionStyle, context: context, callback: callback)
+    }
+
+    public func present(viewControllerIdentifier: String, animated: Bool = true, transitionStyle: UIModalTransitionStyle? = nil, context: Any? = nil) {
+        guard let storyboard = storyboard else {
+            return
+        }
+        relayPresent(storyboard: storyboard, viewControllerIdentifier: viewControllerIdentifier, animated: animated, transitionStyle: transitionStyle, context: context, anyCallback: nil)
     }
 
     public func relayPresent(viewControllerIdentifier: String, animated: Bool = true, transitionStyle: UIModalTransitionStyle? = nil, context: Any? = nil, anyCallback: Any? = nil) {
@@ -285,12 +296,20 @@ extension UIViewController {
         present(presentType: .popup, storyboard: storyboard, viewControllerIdentifier: viewControllerIdentifier, animated: animated, transitionStyle: transitionStyle, context: context, callback: callback)
     }
 
+    public func present(storyboard: UIStoryboard, viewControllerIdentifier: String? = nil, animated: Bool = true, transitionStyle: UIModalTransitionStyle? = nil, context: Any? = nil) {
+        relayPresent(presentType: .popup, storyboard: storyboard, viewControllerIdentifier: viewControllerIdentifier, animated: animated, transitionStyle: transitionStyle, context: context, anyCallback: nil)
+    }
+
     public func relayPresent(storyboard: UIStoryboard, viewControllerIdentifier: String? = nil, animated: Bool = true, transitionStyle: UIModalTransitionStyle? = nil, context: Any? = nil, anyCallback: Any? = nil) {
         relayPresent(presentType: .popup, storyboard: storyboard, viewControllerIdentifier: viewControllerIdentifier, animated: animated, transitionStyle: transitionStyle, context: context, anyCallback: anyCallback)
     }
 
     public func pushViewController<A, R>(storyboardName: String, viewControllerIdentifier: String? = nil, bundle: Bundle? = nil, animated: Bool = true, context: Any? = nil, callback: @escaping ((A) -> R)) {
         present(presentType: .push, storyboardName: storyboardName, viewControllerIdentifier: viewControllerIdentifier, bundle: bundle, animated: animated, context: context, callback: callback)
+    }
+
+    public func pushViewController(storyboardName: String, viewControllerIdentifier: String? = nil, bundle: Bundle? = nil, animated: Bool = true, context: Any? = nil) {
+        relayPushViewController(storyboardName: storyboardName, viewControllerIdentifier: viewControllerIdentifier, bundle: bundle, animated: animated, context: context, anyCallback: nil)
     }
 
     public func relayPushViewController(storyboardName: String, viewControllerIdentifier: String? = nil, bundle: Bundle? = nil, animated: Bool = true, context: Any? = nil, anyCallback: Any? = nil) {
@@ -304,6 +323,13 @@ extension UIViewController {
         pushViewController(storyboard: storyboard, viewControllerIdentifier: viewControllerIdentifier, animated: animated, context: context, callback: callback)
     }
 
+    public func pushViewController(viewControllerIdentifier: String, animated: Bool = true, context: Any? = nil) {
+        guard let storyboard = storyboard else {
+            return
+        }
+        relayPushViewController(storyboard: storyboard, viewControllerIdentifier: viewControllerIdentifier, animated: animated, context: context, anyCallback: nil)
+    }
+
     public func relayPushViewController(viewControllerIdentifier: String, animated: Bool = true, context: Any? = nil, anyCallback: Any? = nil) {
         guard let storyboard = storyboard else {
             return
@@ -313,6 +339,10 @@ extension UIViewController {
 
     public func pushViewController<A, R>(storyboard: UIStoryboard, viewControllerIdentifier: String? = nil, animated: Bool = true, context: Any? = nil, callback: @escaping ((A) -> R)) {
         present(presentType: .push, storyboard: storyboard, viewControllerIdentifier: viewControllerIdentifier, animated: animated, context: context, callback: callback)
+    }
+
+    public func pushViewController(storyboard: UIStoryboard, viewControllerIdentifier: String? = nil, animated: Bool = true, context: Any? = nil) {
+        relayPushViewController(storyboard: storyboard, viewControllerIdentifier: viewControllerIdentifier, animated: animated, context: context, anyCallback: nil)
     }
 
     public func relayPushViewController(storyboard: UIStoryboard, viewControllerIdentifier: String? = nil, animated: Bool = true, context: Any? = nil, anyCallback: Any? = nil) {
@@ -348,6 +378,10 @@ extension UIViewController {
 
     public func present<A, R>(presentType type: PresentType, storyboard: UIStoryboard, viewControllerIdentifier: String? = nil, animated: Bool = true, transitionStyle: UIModalTransitionStyle? = nil, context: Any? = nil, callback: @escaping ((A) -> R)) {
         relayPresent(presentType: type, storyboard: storyboard, viewControllerIdentifier: viewControllerIdentifier, animated: animated, transitionStyle: transitionStyle, context: context, anyCallback: callback as Any?)
+    }
+
+    public func present(presentType type: PresentType, storyboard: UIStoryboard, viewControllerIdentifier: String? = nil, animated: Bool = true, transitionStyle: UIModalTransitionStyle? = nil, context: Any? = nil) {
+        relayPresent(presentType: type, storyboard: storyboard, viewControllerIdentifier: viewControllerIdentifier, animated: animated, transitionStyle: transitionStyle, context: context, anyCallback: nil)
     }
 
     public func relayPresent(presentType type: PresentType, storyboard: UIStoryboard, viewControllerIdentifier: String? = nil, animated: Bool = true, transitionStyle: UIModalTransitionStyle? = nil, context: Any? = nil, anyCallback: Any? = nil) {
