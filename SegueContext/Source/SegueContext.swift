@@ -263,7 +263,7 @@ extension UIViewController {
         objc_sync_exit(type(of: self))
     }
 
-    public func present(_ storyboardName: String, viewControllerIdentifier: String? = nil, bundle: Bundle? = nil, animated: Bool = true, transitionStyle: UIModalTransitionStyle? = nil, context: Any? = nil, callback: Any? = nil) {
+    public func present(storyboardName: String, viewControllerIdentifier: String? = nil, bundle: Bundle? = nil, animated: Bool = true, transitionStyle: UIModalTransitionStyle? = nil, context: Any? = nil, callback: Any? = nil) {
         self.present(presentType: .popup, storyboardName: storyboardName, viewControllerIdentifier: viewControllerIdentifier, bundle: bundle, animated: animated, transitionStyle: transitionStyle, context: context, callback: callback)
     }
 
@@ -273,7 +273,7 @@ extension UIViewController {
         }
     }
 
-    public func present(_ storyboard: UIStoryboard, viewControllerIdentifier: String? = nil, animated: Bool = true, transitionStyle: UIModalTransitionStyle? = nil, context: Any? = nil, callback: Any? = nil) {
+    public func present(storyboard: UIStoryboard, viewControllerIdentifier: String? = nil, animated: Bool = true, transitionStyle: UIModalTransitionStyle? = nil, context: Any? = nil, callback: Any? = nil) {
         self.present(presentType: .popup, storyboard: storyboard, viewControllerIdentifier: viewControllerIdentifier, animated: animated, transitionStyle: transitionStyle, context: context, callback: callback)
     }
 

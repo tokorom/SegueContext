@@ -18,9 +18,12 @@ class ViewController: UIViewController {
     @IBOutlet weak var label: UILabel?
 
     @IBAction func buttonDidTap(_ sender: AnyObject) {
-        self.performSegue(withIdentifier: "Tab", context: self.value) { (value: Int) -> Void in
+        /* self.performSegue(withIdentifier: "Tab", context: self.value) { (value: Int) -> Void in
             self.value = value
-        }
+        } */
+        self.performSegue(withIdentifier: "Tab", context: self.value, callback: { (value: Int) -> Void in
+            self.value = value
+        } as Any?)
     }
 
 }

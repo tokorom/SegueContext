@@ -18,7 +18,7 @@ class ParentViewController: UIViewController {
         }
     }
 
-    override func prepare(for segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         self.contextSender(forSegue: segue) { segueIdentifier, viewController, sendContext in
             switch segueIdentifier {
             case "Embedded1", "Embedded2":
