@@ -31,18 +31,18 @@ public class Context {
         self.callback = anyCallback
     }
 
-    public convenience init<T, A, R>(object: T?, callback: (A) -> R) {
+    public convenience init<T, A, R>(object: T?, callback: @escaping (A) -> R) {
         self.init(object: object)
         self.callback = callback
     }
 
     public subscript(key: String) -> Any? {
         get {
-            if let dictionary = self.object as? [String : Any] {
+            if let dictionary = object as? [String : Any] {
                 return dictionary[key]
-            } else if let dictionary = self.object as? [String : AnyObject] {
+            } else if let dictionary = object as? [String : AnyObject] {
                 return dictionary[key]
-            } else if let dictionary = self.object as? NSDictionary {
+            } else if let dictionary = object as? NSDictionary {
                 return dictionary[key]
             } else {
                 return nil
@@ -52,11 +52,11 @@ public class Context {
 
     public subscript(index: Int) -> Any? {
         get {
-            if let array = self.object as? [Any] {
+            if let array = object as? [Any] {
                 return array[index]
-            } else if let array = self.object as? [AnyObject] {
+            } else if let array = object as? [AnyObject] {
                 return array[index]
-            } else if let array = self.object as? NSArray {
+            } else if let array = object as? NSArray {
                 return array[index]
             } else {
                 return nil
@@ -66,7 +66,7 @@ public class Context {
 
 }
 
-public func toContext(object: Any?) -> Context {
+public func toContext(_ object: Any?) -> Context {
     if let context = object as? Context {
         return context
     } else {
@@ -74,7 +74,7 @@ public func toContext(object: Any?) -> Context {
     }
 }
 
-public func toContext(object1: Any?, _ object2: Any?, _ object3: Any? = nil, _ object4: Any? = nil, _ object5: Any? = nil) -> Context {
+public func toContext(_ object1: Any?, _ object2: Any?, _ object3: Any? = nil, _ object4: Any? = nil, _ object5: Any? = nil) -> Context {
     var dict = [String : Any]()
     dict["1"] = object1
     dict["2"] = object2
@@ -88,9 +88,9 @@ public func toContext(object1: Any?, _ object2: Any?, _ object3: Any? = nil, _ o
 // MARK: - PresentType
 
 public enum PresentType {
-    case Popup
-    case Push
-    case Custom((UIViewController) -> Void)
+    case popup
+    case push
+    case custom((UIViewController) -> Void)
 }
 
 // MARK: - UIViewController
@@ -105,11 +105,11 @@ extension UIViewController {
     }
 
     public func contextValue<T>() -> T? {
-        return self.customContext?.object as? T
+        return customContext?.object as? T
     }
 
     public func contextValue<A, B>() -> (A?, B?) {
-        if let context = self.customContext {
+        if let context = customContext {
             let object1 = context["1"] as? A
             let object2 = context["2"] as? B
             return (object1, object2)
@@ -118,7 +118,7 @@ extension UIViewController {
     }
 
     public func contextValue<A, B, C>() -> (A?, B?, C?) {
-        if let context = self.customContext {
+        if let context = customContext {
             let object1 = context["1"] as? A
             let object2 = context["2"] as? B
             let object3 = context["3"] as? C
@@ -127,38 +127,38 @@ extension UIViewController {
         return (nil, nil, nil)
     }
 
-    public func contextValueForKey<T>(key: String) -> T? {
-        return self.customContext?[key] as? T
+    public func contextValueForKey<T>(_ key: String) -> T? {
+        return customContext?[key] as? T
     }
 
-    public var rawCallback: Any? {
-        if let customContextForCallback = self.customContextForCallback {
+    public var anyCallback: Any? {
+        if let customContextForCallback = customContextForCallback {
             return customContextForCallback.callback
         } else {
-            return self.customContext?.callback
+            return customContext?.callback
         }
     }
 
     public func callback<A, R>() -> ((A) -> R)? {
-        if let callback = self.customContextForCallback?.callback as? ((A) -> R) {
+        if let callback = customContextForCallback?.callback as? ((A) -> R) {
             return callback
         } else {
-            return self.customContext?.callback as? ((A) -> R)
+            return customContext?.callback as? ((A) -> R)
         }
     }
 
-    public private(set) var context: Context? {
+    public fileprivate(set) var context: Context? {
         get {
-            return self.customContext
+            return customContext
         }
         set {
             self.customContext = context
         }
     }
 
-    private var customContext: Context? {
+    fileprivate var customContext: Context? {
         get {
-            if let object: AnyObject = objc_getAssociatedObject(self, &CustomProperty.context) {
+            if let object: AnyObject = objc_getAssociatedObject(self, &CustomProperty.context) as AnyObject? {
                 if let context = object as? Context {
                     return context
                 } else {
@@ -176,9 +176,9 @@ extension UIViewController {
         }
     }
 
-    private var customContextForCallback: Context? {
+    fileprivate var customContextForCallback: Context? {
         get {
-            if let object: AnyObject = objc_getAssociatedObject(self, &CustomProperty.callback) {
+            if let object: AnyObject = objc_getAssociatedObject(self, &CustomProperty.callback) as AnyObject? {
                 if let context = object as? Context {
                     return context
                 } else {
@@ -196,9 +196,9 @@ extension UIViewController {
         }
     }
 
-    private var sendCustomContext: Context? {
+    fileprivate var sendCustomContext: Context? {
         get {
-            if let object: AnyObject = objc_getAssociatedObject(self, &CustomProperty.sendContext) {
+            if let object: AnyObject = objc_getAssociatedObject(self, &CustomProperty.sendContext) as AnyObject? {
                 if let context = object as? Context {
                     return context
                 }
@@ -214,9 +214,9 @@ extension UIViewController {
         }
     }
 
-    private var sendCustomContextForCallback: Context? {
+    fileprivate var sendCustomContextForCallback: Context? {
         get {
-            if let object: AnyObject = objc_getAssociatedObject(self, &CustomProperty.sendCallback) {
+            if let object: AnyObject = objc_getAssociatedObject(self, &CustomProperty.sendCallback) as AnyObject? {
                 if let context = object as? Context {
                     return context
                 }
@@ -232,18 +232,14 @@ extension UIViewController {
         }
     }
 
-    public func performSegueWithIdentifier(identifier: String, sender: AnyObject? = nil, context: Any?) {
-        self.performSegueWithIdentifier(identifier, sender: sender, context: context, callback: nil)
+    public func performSegue<A, R>(withIdentifier identifier: String, sender: AnyObject? = nil, context: Any? = nil, callback: @escaping ((A) -> R)) {
+        relayPerformSegue(withIdentifier: identifier, sender: sender, context: context, anyCallback: callback as Any?)
     }
 
-    public func performSegueWithIdentifier(identifier: String, sender: AnyObject? = nil, callback: Any?) {
-        self.performSegueWithIdentifier(identifier, sender: sender, context: nil, callback: callback)
-    }
+    public func relayPerformSegue(withIdentifier identifier: String, sender: AnyObject? = nil, context: Any? = nil, anyCallback: Any? = nil) {
+        objc_sync_enter(type(of: self))
 
-    public func performSegueWithIdentifier(identifier: String, sender: AnyObject? = nil, context: Any?, callback: Any?) {
-        objc_sync_enter(self.dynamicType)
-
-        self.replacePrepareForSegueIfNeeded()
+        replacePrepareForSegueIfNeeded()
 
         let customContext: Context
         if let context = context as? Context {
@@ -252,89 +248,178 @@ extension UIViewController {
             customContext = Context(object: context)
         }
         customContext.segueIdentifier = identifier
-        self.sendCustomContext = customContext
+        sendCustomContext = customContext
 
-        let customContextForCallback = Context(callback: callback)
+        let customContextForCallback = Context(callback: anyCallback)
         customContextForCallback.segueIdentifier = identifier
-        self.sendCustomContextForCallback = customContextForCallback
+        sendCustomContextForCallback = customContextForCallback
 
-        self.performSegueWithIdentifier(identifier, sender: sender)
+        performSegue(withIdentifier: identifier, sender: sender)
 
-        objc_sync_exit(self.dynamicType)
+        objc_sync_exit(type(of: self))
     }
 
-    public func presentViewControllerWithStoryboardName(storyboardName: String, identifier: String? = nil, bundle: NSBundle? = nil, animated: Bool = true, transitionStyle: UIModalTransitionStyle? = nil, context: Any? = nil, callback: Any? = nil) {
-        self.presentViewControllerWithType(.Popup, storyboardName: storyboardName, identifier: identifier, bundle: bundle, animated: animated, transitionStyle: transitionStyle, context: context, callback: callback)
+    public func present<A, R>(storyboardName: String, viewControllerIdentifier: String? = nil, bundle: Bundle? = nil, animated: Bool = true, transitionStyle: UIModalTransitionStyle? = nil, context: Any? = nil, callback: @escaping ((A) -> R)) {
+        present(presentType: .popup, storyboardName: storyboardName, viewControllerIdentifier: viewControllerIdentifier, bundle: bundle, animated: animated, transitionStyle: transitionStyle, context: context, callback: callback)
     }
 
-    public func presentViewControllerWithIdentifier(identifier: String, animated: Bool = true, transitionStyle: UIModalTransitionStyle? = nil, context: Any? = nil, callback: Any? = nil) {
-        if let storyboard = self.storyboard {
-            self.presentViewControllerWithStoryboard(storyboard, identifier: identifier, animated: animated, transitionStyle: transitionStyle, context: context, callback: callback)
+    public func present(storyboardName: String, viewControllerIdentifier: String? = nil, bundle: Bundle? = nil, animated: Bool = true, transitionStyle: UIModalTransitionStyle? = nil, context: Any? = nil) {
+        relayPresent(presentType: .popup, storyboardName: storyboardName, viewControllerIdentifier: viewControllerIdentifier, bundle: bundle, animated: animated, transitionStyle: transitionStyle, context: context, anyCallback: nil)
+    }
+
+    public func relayPresent(storyboardName: String, viewControllerIdentifier: String? = nil, bundle: Bundle? = nil, animated: Bool = true, transitionStyle: UIModalTransitionStyle? = nil, context: Any? = nil, anyCallback: Any? = nil) {
+        relayPresent(presentType: .popup, storyboardName: storyboardName, viewControllerIdentifier: viewControllerIdentifier, bundle: bundle, animated: animated, transitionStyle: transitionStyle, context: context, anyCallback: anyCallback)
+    }
+
+    public func present<A, R>(viewControllerIdentifier: String, animated: Bool = true, transitionStyle: UIModalTransitionStyle? = nil, context: Any? = nil, callback: @escaping ((A) -> R)) {
+        guard let storyboard = storyboard else {
+            return
         }
+        present(storyboard: storyboard, viewControllerIdentifier: viewControllerIdentifier, animated: animated, transitionStyle: transitionStyle, context: context, callback: callback)
     }
 
-    public func presentViewControllerWithStoryboard(storyboard: UIStoryboard, identifier: String? = nil, animated: Bool = true, transitionStyle: UIModalTransitionStyle? = nil, context: Any? = nil, callback: Any? = nil) {
-        self.presentViewControllerWithType(.Popup, storyboard: storyboard, identifier: identifier, animated: animated, transitionStyle: transitionStyle, context: context, callback: callback)
-    }
-
-    public func pushViewControllerWithStoryboardName(storyboardName: String, identifier: String? = nil, bundle: NSBundle? = nil, animated: Bool = true, context: Any? = nil, callback: Any? = nil) {
-        self.presentViewControllerWithType(.Push, storyboardName: storyboardName, identifier: identifier, bundle: bundle, animated: animated, context: context, callback: callback)
-    }
-
-    public func pushViewControllerWithIdentifier(identifier: String, animated: Bool = true, context: Any? = nil, callback: Any? = nil) {
-        if let storyboard = self.storyboard {
-            self.pushViewControllerWithStoryboard(storyboard, identifier: identifier, animated: animated, context: context, callback: callback)
+    public func present(viewControllerIdentifier: String, animated: Bool = true, transitionStyle: UIModalTransitionStyle? = nil, context: Any? = nil) {
+        guard let storyboard = storyboard else {
+            return
         }
+        relayPresent(storyboard: storyboard, viewControllerIdentifier: viewControllerIdentifier, animated: animated, transitionStyle: transitionStyle, context: context, anyCallback: nil)
     }
 
-    public func pushViewControllerWithStoryboard(storyboard: UIStoryboard, identifier: String? = nil, animated: Bool = true, context: Any? = nil, callback: Any? = nil) {
-        self.presentViewControllerWithType(.Push, storyboard: storyboard, identifier: identifier, animated: animated, context: context, callback: callback)
+    public func relayPresent(viewControllerIdentifier: String, animated: Bool = true, transitionStyle: UIModalTransitionStyle? = nil, context: Any? = nil, anyCallback: Any? = nil) {
+        guard let storyboard = storyboard else {
+            return
+        }
+        relayPresent(storyboard: storyboard, viewControllerIdentifier: viewControllerIdentifier, animated: animated, transitionStyle: transitionStyle, context: context, anyCallback: anyCallback)
     }
 
-    public func presentViewControllerWithType(type: PresentType, storyboardName: String, identifier: String? = nil, bundle: NSBundle? = nil, animated: Bool = true, transitionStyle: UIModalTransitionStyle? = nil, context: Any? = nil, callback: Any? = nil) {
+    public func present<A, R>(storyboard: UIStoryboard, viewControllerIdentifier: String? = nil, animated: Bool = true, transitionStyle: UIModalTransitionStyle? = nil, context: Any? = nil, callback: @escaping ((A) -> R)) {
+        present(presentType: .popup, storyboard: storyboard, viewControllerIdentifier: viewControllerIdentifier, animated: animated, transitionStyle: transitionStyle, context: context, callback: callback)
+    }
+
+    public func present(storyboard: UIStoryboard, viewControllerIdentifier: String? = nil, animated: Bool = true, transitionStyle: UIModalTransitionStyle? = nil, context: Any? = nil) {
+        relayPresent(presentType: .popup, storyboard: storyboard, viewControllerIdentifier: viewControllerIdentifier, animated: animated, transitionStyle: transitionStyle, context: context, anyCallback: nil)
+    }
+
+    public func relayPresent(storyboard: UIStoryboard, viewControllerIdentifier: String? = nil, animated: Bool = true, transitionStyle: UIModalTransitionStyle? = nil, context: Any? = nil, anyCallback: Any? = nil) {
+        relayPresent(presentType: .popup, storyboard: storyboard, viewControllerIdentifier: viewControllerIdentifier, animated: animated, transitionStyle: transitionStyle, context: context, anyCallback: anyCallback)
+    }
+
+    public func pushViewController<A, R>(storyboardName: String, viewControllerIdentifier: String? = nil, bundle: Bundle? = nil, animated: Bool = true, context: Any? = nil, callback: @escaping ((A) -> R)) {
+        present(presentType: .push, storyboardName: storyboardName, viewControllerIdentifier: viewControllerIdentifier, bundle: bundle, animated: animated, context: context, callback: callback)
+    }
+
+    public func pushViewController(storyboardName: String, viewControllerIdentifier: String? = nil, bundle: Bundle? = nil, animated: Bool = true, context: Any? = nil) {
+        relayPushViewController(storyboardName: storyboardName, viewControllerIdentifier: viewControllerIdentifier, bundle: bundle, animated: animated, context: context, anyCallback: nil)
+    }
+
+    public func relayPushViewController(storyboardName: String, viewControllerIdentifier: String? = nil, bundle: Bundle? = nil, animated: Bool = true, context: Any? = nil, anyCallback: Any? = nil) {
+        relayPresent(presentType: .push, storyboardName: storyboardName, viewControllerIdentifier: viewControllerIdentifier, bundle: bundle, animated: animated, context: context, anyCallback: anyCallback)
+    }
+
+    public func pushViewController<A, R>(viewControllerIdentifier: String, animated: Bool = true, context: Any? = nil, callback: @escaping ((A) -> R)) {
+        guard let storyboard = storyboard else {
+            return
+        }
+        pushViewController(storyboard: storyboard, viewControllerIdentifier: viewControllerIdentifier, animated: animated, context: context, callback: callback)
+    }
+
+    public func pushViewController(viewControllerIdentifier: String, animated: Bool = true, context: Any? = nil) {
+        guard let storyboard = storyboard else {
+            return
+        }
+        relayPushViewController(storyboard: storyboard, viewControllerIdentifier: viewControllerIdentifier, animated: animated, context: context, anyCallback: nil)
+    }
+
+    public func relayPushViewController(viewControllerIdentifier: String, animated: Bool = true, context: Any? = nil, anyCallback: Any? = nil) {
+        guard let storyboard = storyboard else {
+            return
+        }
+        relayPushViewController(storyboard: storyboard, viewControllerIdentifier: viewControllerIdentifier, animated: animated, context: context, anyCallback: anyCallback)
+    }
+
+    public func pushViewController<A, R>(storyboard: UIStoryboard, viewControllerIdentifier: String? = nil, animated: Bool = true, context: Any? = nil, callback: @escaping ((A) -> R)) {
+        present(presentType: .push, storyboard: storyboard, viewControllerIdentifier: viewControllerIdentifier, animated: animated, context: context, callback: callback)
+    }
+
+    public func pushViewController(storyboard: UIStoryboard, viewControllerIdentifier: String? = nil, animated: Bool = true, context: Any? = nil) {
+        relayPushViewController(storyboard: storyboard, viewControllerIdentifier: viewControllerIdentifier, animated: animated, context: context, anyCallback: nil)
+    }
+
+    public func relayPushViewController(storyboard: UIStoryboard, viewControllerIdentifier: String? = nil, animated: Bool = true, context: Any? = nil, anyCallback: Any? = nil) {
+        relayPresent(presentType: .push, storyboard: storyboard, viewControllerIdentifier: viewControllerIdentifier, animated: animated, context: context, anyCallback: anyCallback)
+    }
+
+    public func present<A, R>(presentType type: PresentType, storyboardName: String, viewControllerIdentifier: String? = nil, bundle: Bundle? = nil, animated: Bool = true, transitionStyle: UIModalTransitionStyle? = nil, context: Any? = nil, callback: @escaping ((A) -> R)) {
         let storyboard = UIStoryboard(name: storyboardName, bundle: bundle)
-        self.presentViewControllerWithType(type, storyboard: storyboard, identifier: identifier, animated: animated, transitionStyle: transitionStyle, context: context, callback: callback)
+        present(presentType: type, storyboard: storyboard, viewControllerIdentifier: viewControllerIdentifier, animated: animated, transitionStyle: transitionStyle, context: context, callback: callback)
     }
 
-    public func presentViewControllerWithType(type: PresentType, storyboard: UIStoryboard, identifier: String? = nil, animated: Bool = true, transitionStyle: UIModalTransitionStyle? = nil, context: Any? = nil, callback: Any? = nil) {
-        if let viewController = UIViewController.viewControllerFromStoryboard(storyboard, identifier: identifier, context: context, callback: callback) {
-            switch type {
-            case .Push:
-                var navigationController: UINavigationController?
-                if let navi = self.navigationController {
-                    navigationController = navi
-                } else if let navi = self.parentViewController as? UINavigationController {
-                    navigationController = navi
-                } else if let navi = self.presentingViewController as? UINavigationController {
-                    navigationController = navi
-                } else if let tabBarController = self as? UITabBarController {
-                    if let navi = tabBarController.selectedViewController as? UINavigationController {
-                        navigationController = navi
-                    } else if let navi = tabBarController.selectedViewController?.navigationController {
-                        navigationController = navi
-                    }
-                }
-                navigationController?.pushViewController(viewController, animated: animated)
-            case .Custom(let customFunction):
-                customFunction(viewController)
-            default:
-                if let transitionStyle = transitionStyle {
-                    viewController.modalTransitionStyle = transitionStyle
-                }
-                self.presentViewController(viewController, animated: animated, completion: nil)
+    public func relayPresent(presentType type: PresentType, storyboardName: String, viewControllerIdentifier: String? = nil, bundle: Bundle? = nil, animated: Bool = true, transitionStyle: UIModalTransitionStyle? = nil, context: Any? = nil, anyCallback: Any? = nil) {
+        let storyboard = UIStoryboard(name: storyboardName, bundle: bundle)
+        relayPresent(presentType: type, storyboard: storyboard, viewControllerIdentifier: viewControllerIdentifier, animated: animated, transitionStyle: transitionStyle, context: context, anyCallback: anyCallback)
+    }
+
+    fileprivate var scNavigationController: UINavigationController? {
+        if let navi = navigationController {
+            return navi
+        } else if let navi = parent as? UINavigationController {
+            return navi
+        } else if let navi = presentingViewController as? UINavigationController {
+            return navi
+        } else if let tabBarController = self as? UITabBarController {
+            if let navi = tabBarController.selectedViewController as? UINavigationController {
+                return navi
+            } else if let navi = tabBarController.selectedViewController?.navigationController {
+                return navi
             }
         }
+        return nil
     }
 
-    public class func viewControllerFromStoryboardName(storyboardName: String, identifier: String? = nil, bundle: NSBundle? = nil, context: Any? = nil, callback: Any? = nil) -> UIViewController? {
+    public func present<A, R>(presentType type: PresentType, storyboard: UIStoryboard, viewControllerIdentifier: String? = nil, animated: Bool = true, transitionStyle: UIModalTransitionStyle? = nil, context: Any? = nil, callback: @escaping ((A) -> R)) {
+        relayPresent(presentType: type, storyboard: storyboard, viewControllerIdentifier: viewControllerIdentifier, animated: animated, transitionStyle: transitionStyle, context: context, anyCallback: callback as Any?)
+    }
+
+    public func present(presentType type: PresentType, storyboard: UIStoryboard, viewControllerIdentifier: String? = nil, animated: Bool = true, transitionStyle: UIModalTransitionStyle? = nil, context: Any? = nil) {
+        relayPresent(presentType: type, storyboard: storyboard, viewControllerIdentifier: viewControllerIdentifier, animated: animated, transitionStyle: transitionStyle, context: context, anyCallback: nil)
+    }
+
+    public func relayPresent(presentType type: PresentType, storyboard: UIStoryboard, viewControllerIdentifier: String? = nil, animated: Bool = true, transitionStyle: UIModalTransitionStyle? = nil, context: Any? = nil, anyCallback: Any? = nil) {
+        guard let viewController = UIViewController.relayViewController(fromStoryboard: storyboard, viewControllerIdentifier: viewControllerIdentifier, context: context, anyCallback: anyCallback) else {
+            return
+        }
+
+        switch type {
+        case .push:
+            scNavigationController?.pushViewController(viewController, animated: animated)
+        case .custom(let customFunction):
+            customFunction(viewController)
+        default:
+            if let transitionStyle = transitionStyle {
+                viewController.modalTransitionStyle = transitionStyle
+            }
+            present(viewController, animated: animated, completion: nil)
+        }
+    }
+
+    public class func viewController<A, R>(fromStoryboardName storyboardName: String, viewControllerIdentifier: String? = nil, bundle: Bundle? = nil, context: Any? = nil, callback: @escaping ((A) -> R)) -> UIViewController? {
         let storyboard = UIStoryboard(name: storyboardName, bundle: bundle)
-        return self.viewControllerFromStoryboard(storyboard, identifier: identifier, context: context, callback: callback)
+        return viewController(fromStoryboard: storyboard, viewControllerIdentifier: viewControllerIdentifier, context: context, callback: callback)
     }
 
-    public class func viewControllerFromStoryboard(storyboard: UIStoryboard, identifier: String? = nil, context: Any? = nil, callback: Any? = nil) -> UIViewController? {
+    public class func relayViewController(fromStoryboardName storyboardName: String, viewControllerIdentifier: String? = nil, bundle: Bundle? = nil, context: Any? = nil, anyCallback: Any? = nil) -> UIViewController? {
+        let storyboard = UIStoryboard(name: storyboardName, bundle: bundle)
+        return relayViewController(fromStoryboard: storyboard, viewControllerIdentifier: viewControllerIdentifier, context: context, anyCallback: anyCallback)
+    }
+
+    public class func viewController<A, R>(fromStoryboard storyboard: UIStoryboard, viewControllerIdentifier: String? = nil, context: Any? = nil, callback: @escaping ((A) -> R)) -> UIViewController? {
+        return relayViewController(fromStoryboard: storyboard, viewControllerIdentifier: viewControllerIdentifier, context: context, anyCallback: callback as Any?)
+    }
+
+    public class func relayViewController(fromStoryboard storyboard: UIStoryboard, viewControllerIdentifier: String? = nil, context: Any? = nil, anyCallback: Any? = nil) -> UIViewController? {
         let viewController: UIViewController?
-        if let identifier = identifier {
-            viewController = storyboard.instantiateViewControllerWithIdentifier(identifier)
+        if let viewControllerIdentifier = viewControllerIdentifier {
+            viewController = storyboard.instantiateViewController(withIdentifier: viewControllerIdentifier)
         } else {
             viewController = storyboard.instantiateInitialViewController()
         }
@@ -345,57 +430,60 @@ extension UIViewController {
                 let customContext = Context(object: context)
                 viewController.configureCustomContext(customContext)
             }
-            if let callback = callback {
-                let context = Context(callback: callback)
-                viewController.configureCustomContextForCallback(context)
+            if let anyCallback = anyCallback {
+                let context = Context(callback: anyCallback)
+                viewController.configureCustomContext(forCallback: context)
             }
         }
         return viewController
     }
 
-    public func sendContext(object1: Any?, _ object2: Any?, _ object3: Any? = nil, _ object4: Any? = nil, _ object5: Any? = nil) -> Context {
-        return self.sendContext(toContext(object1, object2, object3, object4, object5))
+    @discardableResult public func sendContext(_ object1: Any?, _ object2: Any?, _ object3: Any? = nil, _ object4: Any? = nil, _ object5: Any? = nil) -> Context {
+        return sendContext(toContext(object1, object2, object3, object4, object5))
     }
 
-    public func sendContext(object: Any?) -> Context {
+    @discardableResult public func sendContext(_ object: Any?) -> Context {
         let context = toContext(object)
-        self.configureCustomContext(context)
+        configureCustomContext(context)
         return context
     }
 
-    private func configureCustomContext(customContext: Context) {
+    fileprivate func configureCustomContext(_ customContext: Context) {
         let viewController = self
         viewController.customContext = customContext
         for viewController in viewController.childViewControllers {
             viewController.configureCustomContext(customContext)
         }
-        if let navi = viewController as? UINavigationController {
+        switch viewController {
+        case let navi as UINavigationController:
             if let viewController = navi.viewControllers.first {
                 viewController.configureCustomContext(customContext)
             }
-        } else if let tab = viewController as? UITabBarController {
+        case let tab as UITabBarController:
             if let viewControllers = tab.viewControllers {
                 for viewController in viewControllers {
                     viewController.configureCustomContext(customContext)
                 }
             }
+        default:
+            break
         }
     }
 
-    private func configureCustomContextForCallback(customContextForCallback: Context) {
+    fileprivate func configureCustomContext(forCallback customContextForCallback: Context) {
         let viewController = self
         viewController.customContextForCallback = customContextForCallback
         for viewController in viewController.childViewControllers {
-            viewController.configureCustomContextForCallback(customContextForCallback)
+            viewController.configureCustomContext(forCallback: customContextForCallback)
         }
         if let navi = viewController as? UINavigationController {
             if let viewController = navi.viewControllers.first {
-                viewController.configureCustomContextForCallback(customContextForCallback)
+                viewController.configureCustomContext(forCallback: customContextForCallback)
             }
         } else if let tab = viewController as? UITabBarController {
             if let viewControllers = tab.viewControllers {
                 for viewController in viewControllers {
-                    viewController.configureCustomContextForCallback(customContextForCallback)
+                    viewController.configureCustomContext(forCallback: customContextForCallback)
                 }
             }
         }
@@ -405,58 +493,58 @@ extension UIViewController {
 
 // MARK: - Swizzling
 
-var swc_swizzled_already: UInt8 = 0
+var SWCSwizzledAlready: UInt8 = 0
 
 extension UIViewController {
 
-    public func contextSenderForSegue(segue: UIStoryboardSegue, callback: (String, UIViewController, (Any?) -> Void) -> Void) {
-        if let segueIdentifier = segue.identifier  {
-            let viewController = segue.destinationViewController
+    public func contextSender(forSegue segue: UIStoryboardSegue, callback: (String, UIViewController, (Any?) -> Void) -> Void) {
+        if let segueIdentifier = segue.identifier {
+            let viewController = segue.destination
             let sendContext: (Any?) -> Void = { context in
-                viewController.sendContext(context)
+                let _ = viewController.sendContext(context)
             }
             callback(segueIdentifier, viewController, sendContext)
         }
     }
 
     class func replacePrepareForSegueIfNeeded() {
-        if nil == objc_getAssociatedObject(self, &swc_swizzled_already) {
-            objc_setAssociatedObject(self, &swc_swizzled_already, NSNumber(bool: true), .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-            let original = class_getInstanceMethod(self, #selector(prepareForSegue(_:sender:)))
+        if nil == objc_getAssociatedObject(self, &SWCSwizzledAlready) {
+            objc_setAssociatedObject(self, &SWCSwizzledAlready, NSNumber(value: true), .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            let original = class_getInstanceMethod(self, #selector(prepare(for:sender:)))
             let replaced = class_getInstanceMethod(self, #selector(swc_wrapped_prepareForSegue(_:sender:)))
             method_exchangeImplementations(original, replaced)
         }
     }
 
     class func revertReplacedPrepareForSegueIfNeeded() {
-        if nil != objc_getAssociatedObject(self, &swc_swizzled_already) {
-            objc_setAssociatedObject(self, &swc_swizzled_already, nil, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-            let original = class_getInstanceMethod(self, #selector(prepareForSegue(_:sender:)))
+        if nil != objc_getAssociatedObject(self, &SWCSwizzledAlready) {
+            objc_setAssociatedObject(self, &SWCSwizzledAlready, nil, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            let original = class_getInstanceMethod(self, #selector(prepare(for:sender:)))
             let replaced = class_getInstanceMethod(self, #selector(swc_wrapped_prepareForSegue(_:sender:)))
             method_exchangeImplementations(original, replaced)
         }
     }
 
     func replacePrepareForSegueIfNeeded() {
-        self.dynamicType.replacePrepareForSegueIfNeeded()
+        type(of: self).replacePrepareForSegueIfNeeded()
     }
 
     func revertReplacedPrepareForSegueIfNeeded() {
-        self.dynamicType.revertReplacedPrepareForSegueIfNeeded()
-    }
-    
-    func swc_wrapped_prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        self.swc_wrapped_prepareForSegue(segue, sender: sender)
-        self.swc_prepareForSegue(segue, sender: sender)
-
-        self.revertReplacedPrepareForSegueIfNeeded()
+        type(of: self).revertReplacedPrepareForSegueIfNeeded()
     }
 
-    func swc_prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        let destination = segue.destinationViewController
-        let source = segue.sourceViewController
+    func swc_wrapped_prepareForSegue(_ segue: UIStoryboardSegue, sender: AnyObject?) {
+        swc_wrapped_prepareForSegue(segue, sender: sender)
+        swc_prepareForSegue(segue, sender: sender)
+
+        revertReplacedPrepareForSegueIfNeeded()
+    }
+
+    func swc_prepareForSegue(_ segue: UIStoryboardSegue, sender: AnyObject?) {
+        let destination = segue.destination
+        let source = segue.source
         if let customContext = source.sendCustomContext {
-            if let targetIdentifier = customContext.segueIdentifier where targetIdentifier != segue.identifier {
+            if let targetIdentifier = customContext.segueIdentifier, targetIdentifier != segue.identifier {
                 return
             }
 
@@ -464,11 +552,11 @@ extension UIViewController {
             source.sendCustomContext = nil
         }
         if let customContextForCallback = source.sendCustomContextForCallback {
-            if let targetIdentifier = customContextForCallback.segueIdentifier where targetIdentifier != segue.identifier {
+            if let targetIdentifier = customContextForCallback.segueIdentifier, targetIdentifier != segue.identifier {
                 return
             }
 
-            destination.configureCustomContextForCallback(customContextForCallback)
+            destination.configureCustomContext(forCallback: customContextForCallback)
             source.sendCustomContextForCallback = nil
         }
     }

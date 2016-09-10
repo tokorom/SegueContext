@@ -10,7 +10,7 @@
 		F30BD66E1BBF72DA00F8CF6C /* SegueContext.h in Headers */ = {isa = PBXBuildFile; fileRef = F30BD66D1BBF72DA00F8CF6C /* SegueContext.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F30BD6721BBF72DA00F8CF6C /* SegueContext.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F30BD66B1BBF72DA00F8CF6C /* SegueContext.framework */; };
 		F30BD6731BBF72DA00F8CF6C /* SegueContext.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F30BD66B1BBF72DA00F8CF6C /* SegueContext.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		F30BD67F1BBF738700F8CF6C /* SegueContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30BD67C1BBF738700F8CF6C /* SegueContext.swift */; settings = {ASSET_TAGS = (); }; };
+		F30BD67F1BBF738700F8CF6C /* SegueContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30BD67C1BBF738700F8CF6C /* SegueContext.swift */; };
 		F35399AF1B54D14800B7CB15 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35399AE1B54D14800B7CB15 /* AppDelegate.swift */; };
 		F35399B11B54D14800B7CB15 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35399B01B54D14800B7CB15 /* ViewController.swift */; };
 		F35399B41B54D14800B7CB15 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F35399B21B54D14800B7CB15 /* Main.storyboard */; };
@@ -18,12 +18,21 @@
 		F35399B91B54D14800B7CB15 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = F35399B71B54D14800B7CB15 /* LaunchScreen.xib */; };
 		F35399D51B54EAD200B7CB15 /* SliderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35399D41B54EAD200B7CB15 /* SliderViewController.swift */; };
 		F35399D71B54F0E900B7CB15 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35399D61B54F0E900B7CB15 /* ListViewController.swift */; };
+		F39939C31D83F7D6001FA167 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39939C21D83F7D6001FA167 /* Tests.swift */; };
+		F39939C51D83F7D6001FA167 /* SegueContext.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F30BD66B1BBF72DA00F8CF6C /* SegueContext.framework */; };
 		F3D832301B773DFC00AD489C /* ChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D8322E1B773DFC00AD489C /* ChildViewController.swift */; };
 		F3D832311B773DFC00AD489C /* ParentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D8322F1B773DFC00AD489C /* ParentViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
 		F30BD6701BBF72DA00F8CF6C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F35399A11B54D14800B7CB15 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F30BD66A1BBF72DA00F8CF6C;
+			remoteInfo = SegueContext;
+		};
+		F39939C61D83F7D6001FA167 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = F35399A11B54D14800B7CB15 /* Project object */;
 			proxyType = 1;
@@ -60,6 +69,9 @@
 		F35399B81B54D14800B7CB15 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		F35399D41B54EAD200B7CB15 /* SliderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SliderViewController.swift; sourceTree = "<group>"; };
 		F35399D61B54F0E900B7CB15 /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
+		F39939C01D83F7D5001FA167 /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F39939C21D83F7D6001FA167 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
+		F39939C41D83F7D6001FA167 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F3D8322E1B773DFC00AD489C /* ChildViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChildViewController.swift; sourceTree = "<group>"; };
 		F3D8322F1B773DFC00AD489C /* ParentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParentViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -77,6 +89,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				F30BD6721BBF72DA00F8CF6C /* SegueContext.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F39939BD1D83F7D5001FA167 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F39939C51D83F7D6001FA167 /* SegueContext.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -106,6 +126,7 @@
 			children = (
 				F30BD66C1BBF72DA00F8CF6C /* SegueContext */,
 				F35399AB1B54D14800B7CB15 /* Example */,
+				F39939C11D83F7D6001FA167 /* Tests */,
 				F35399AA1B54D14800B7CB15 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -115,6 +136,7 @@
 			children = (
 				F35399A91B54D14800B7CB15 /* Example.app */,
 				F30BD66B1BBF72DA00F8CF6C /* SegueContext.framework */,
+				F39939C01D83F7D5001FA167 /* Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -142,6 +164,15 @@
 				F35399AD1B54D14800B7CB15 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F39939C11D83F7D6001FA167 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				F39939C21D83F7D6001FA167 /* Tests.swift */,
+				F39939C41D83F7D6001FA167 /* Info.plist */,
+			);
+			path = Tests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -195,21 +226,45 @@
 			productReference = F35399A91B54D14800B7CB15 /* Example.app */;
 			productType = "com.apple.product-type.application";
 		};
+		F39939BF1D83F7D5001FA167 /* Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F39939CA1D83F7D6001FA167 /* Build configuration list for PBXNativeTarget "Tests" */;
+			buildPhases = (
+				F39939BC1D83F7D5001FA167 /* Sources */,
+				F39939BD1D83F7D5001FA167 /* Frameworks */,
+				F39939BE1D83F7D5001FA167 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F39939C71D83F7D6001FA167 /* PBXTargetDependency */,
+			);
+			name = Tests;
+			productName = Tests;
+			productReference = F39939C01D83F7D5001FA167 /* Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		F35399A11B54D14800B7CB15 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0700;
+				LastSwiftUpdateCheck = 0800;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = tokoro;
 				TargetAttributes = {
 					F30BD66A1BBF72DA00F8CF6C = {
 						CreatedOnToolsVersion = 7.0;
+						LastSwiftMigration = 0800;
 					};
 					F35399A81B54D14800B7CB15 = {
 						CreatedOnToolsVersion = 6.3.2;
+						LastSwiftMigration = 0800;
+					};
+					F39939BF1D83F7D5001FA167 = {
+						CreatedOnToolsVersion = 8.0;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -228,6 +283,7 @@
 			targets = (
 				F30BD66A1BBF72DA00F8CF6C /* SegueContext */,
 				F35399A81B54D14800B7CB15 /* Example */,
+				F39939BF1D83F7D5001FA167 /* Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -247,6 +303,13 @@
 				F35399B41B54D14800B7CB15 /* Main.storyboard in Resources */,
 				F35399B91B54D14800B7CB15 /* LaunchScreen.xib in Resources */,
 				F35399B61B54D14800B7CB15 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F39939BE1D83F7D5001FA167 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -274,6 +337,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F39939BC1D83F7D5001FA167 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F39939C31D83F7D6001FA167 /* Tests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -281,6 +352,11 @@
 			isa = PBXTargetDependency;
 			target = F30BD66A1BBF72DA00F8CF6C /* SegueContext */;
 			targetProxy = F30BD6701BBF72DA00F8CF6C /* PBXContainerItemProxy */;
+		};
+		F39939C71D83F7D6001FA167 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F30BD66A1BBF72DA00F8CF6C /* SegueContext */;
+			targetProxy = F39939C61D83F7D6001FA167 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -307,6 +383,7 @@
 		F30BD6741BBF72DA00F8CF6C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEFINES_MODULE = YES;
@@ -321,6 +398,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = me.tokoro.SegueContext;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -330,6 +408,7 @@
 		F30BD6751BBF72DA00F8CF6C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -342,6 +421,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = me.tokoro.SegueContext;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -433,24 +514,62 @@
 		F35399C91B54D14800B7CB15 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = Example/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "me.tokoro.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
 		F35399CA1B54D14800B7CB15 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = Example/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "me.tokoro.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		F39939C81D83F7D6001FA167 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				INFOPLIST_FILE = Tests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = me.tokoro.Tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		F39939C91D83F7D6001FA167 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				INFOPLIST_FILE = Tests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = me.tokoro.Tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -464,6 +583,7 @@
 				F30BD6751BBF72DA00F8CF6C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F35399A41B54D14800B7CB15 /* Build configuration list for PBXProject "SegueContext" */ = {
 			isa = XCConfigurationList;
@@ -482,6 +602,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		F39939CA1D83F7D6001FA167 /* Build configuration list for PBXNativeTarget "Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F39939C81D83F7D6001FA167 /* Debug */,
+				F39939C91D83F7D6001FA167 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
