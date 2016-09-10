@@ -13,16 +13,16 @@ class ParentViewController: UIViewController {
     override func loadView() {
         super.loadView()
 
-        if let value: Int = self.contextValue() {
+        if let value: Int = contextValue() {
             self.value = value
         }
     }
 
-    override func prepare(for segue: UIStoryboardSegue, sender: AnyObject?) {
-        self.contextSender(forSegue: segue) { segueIdentifier, viewController, sendContext in
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        contextSender(forSegue: segue) { segueIdentifier, viewController, sendContext in
             switch segueIdentifier {
             case "Embedded1", "Embedded2":
-                sendContext(self.value)
+                sendContext(value)
             default:
                 break
             }

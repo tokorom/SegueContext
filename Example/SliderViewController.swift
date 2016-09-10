@@ -11,7 +11,7 @@ class SliderViewController: UIViewController {
 
     var value: Int = 0 {
         didSet {
-            self.label?.text = String(self.value)
+            self.label?.text = String(value)
         }
     }
 
@@ -21,9 +21,9 @@ class SliderViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if let value: Int = self.contextValue() {
+        if let value: Int = contextValue() {
             self.value = value
-            if let slider = self.slider {
+            if let slider = slider {
                 slider.value = max(slider.minimumValue, min(slider.maximumValue, Float(value)))
             }
         }
@@ -34,13 +34,13 @@ class SliderViewController: UIViewController {
     }
 
     @IBAction func buttonDidTap(_ sender: AnyObject) {
-        if let callback: (Int) -> Void = self.callback() {
-            callback(self.value)
+        if let callback: (Int) -> Void = callback() {
+            callback(value)
         }
-        self.dismiss(animated: true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
 
     @IBAction func othersButtonDidTap(_ sender: AnyObject) {
-        self.present(withViewControllerIdentifier: "NavigationController", context: context, callback: self.rawCallback)
+        relayPresent(viewControllerIdentifier: "NavigationController", context: context, anyCallback: anyCallback)
     }
 }

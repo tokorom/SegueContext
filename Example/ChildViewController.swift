@@ -11,7 +11,7 @@ class ChildViewController: UIViewController {
     
     var value: Int = 0 {
         didSet {
-            self.label?.text = String(self.value)
+            self.label?.text = String(value)
         }
     }
 
@@ -20,7 +20,7 @@ class ChildViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     
-        if let value: Int = self.contextValue() {
+        if let value: Int = contextValue() {
             self.value = value
         }
     }
