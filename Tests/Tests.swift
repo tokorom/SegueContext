@@ -21,7 +21,7 @@ class Tests: XCTestCase {
         let vc = UIViewController()
 
         if let _ = Int("x") {
-            vc.performSegue(withIdentifier: "Test", sender: nil)
+            vc.performSegue(withIdentifier: "Test", context: 1)
         }
 
         XCTAssertTrue(true)
@@ -43,7 +43,7 @@ class Tests: XCTestCase {
         let vc = UIViewController()
 
         if let _ = Int("x") {
-            vc.present(storyboardName: "Test")
+            vc.present(storyboardName: "Test", context: 1)
         }
 
         XCTAssertTrue(true)
@@ -66,7 +66,7 @@ class Tests: XCTestCase {
 
         if let _ = Int("x") {
             let storyboard = UIStoryboard(name: "Test", bundle: nil)
-            vc.present(storyboard: storyboard)
+            vc.present(storyboard: storyboard, context: 1)
         }
 
         XCTAssertTrue(true)
@@ -89,7 +89,7 @@ class Tests: XCTestCase {
         let vc = UIViewController()
 
         if let _ = Int("x") {
-            vc.present(viewControllerIdentifier: "Test")
+            vc.present(viewControllerIdentifier: "Test", context: 1)
         }
 
         XCTAssertTrue(true)
@@ -111,7 +111,7 @@ class Tests: XCTestCase {
         let vc = UIViewController()
 
         if let _ = Int("x") {
-            vc.pushViewController(storyboardName: "Test")
+            vc.pushViewController(storyboardName: "Test", context: 1)
         }
 
         XCTAssertTrue(true)
@@ -134,7 +134,7 @@ class Tests: XCTestCase {
 
         if let _ = Int("x") {
             let storyboard = UIStoryboard(name: "Test", bundle: nil)
-            vc.pushViewController(storyboard: storyboard)
+            vc.pushViewController(storyboard: storyboard, context: 1)
         }
 
         XCTAssertTrue(true)
@@ -157,7 +157,7 @@ class Tests: XCTestCase {
         let vc = UIViewController()
 
         if let _ = Int("x") {
-            vc.pushViewController(viewControllerIdentifier: "Test")
+            vc.pushViewController(viewControllerIdentifier: "Test", context: 1)
         }
 
         XCTAssertTrue(true)

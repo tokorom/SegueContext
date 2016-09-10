@@ -236,6 +236,10 @@ extension UIViewController {
         relayPerformSegue(withIdentifier: identifier, sender: sender, context: context, anyCallback: callback as Any?)
     }
 
+    public func performSegue(withIdentifier identifier: String, sender: AnyObject? = nil, context: Any? = nil) {
+        relayPerformSegue(withIdentifier: identifier, sender: sender, context: context, anyCallback: nil)
+    }
+
     public func relayPerformSegue(withIdentifier identifier: String, sender: AnyObject? = nil, context: Any? = nil, anyCallback: Any? = nil) {
         objc_sync_enter(type(of: self))
 
