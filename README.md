@@ -20,7 +20,7 @@ This is new version of [TKRSegueOptions](https://github.com/tokorom/TKRSegueOpti
 ### This is a bother code...
 
 ```swift
-self.performSegueWithIdentifier("Next", sender: nil)
+self.performSegue(withIdentifier: "Next", sender: nil)
 
 // and
 
@@ -56,7 +56,7 @@ extension MyViewController: NextViewControllerDelegate {
 ### This is a new simple code with SegueContext! yeah!
 
 ```swift
-self.performSegueWithIdentifier("Next", context: 10) { (item: Item) -> Void in
+self.performSegue(withIdentifier: "Next", context: 10) { (item: Item) -> Void in
     // get an item!
 }
 ```
@@ -68,7 +68,7 @@ self.performSegueWithIdentifier("Next", context: 10) { (item: Item) -> Void in
 - Source View Controller
 
 ```swift
-self.performSegueWithIdentifier("Next", context: 10)
+self.performSegue(withIdentifier: "Next", context: 10)
 ```
 
 -  Destination View Controller
@@ -84,7 +84,7 @@ if let value: Int = self.contextValue() {
 - Source View Controller
 
 ```swift
-self.performSegueWithIdentifier("Next", context: 10) { (item: Item) -> Void in
+self.performSegue(withIdentifier: "Next", context: 10) { (item: Item) -> Void in
     // get an item!
 }
 ```
@@ -128,10 +128,10 @@ override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 
 ```swift
 // normal
-self.performSegueWithIdentifier("Next", context: 10)
+self.performSegue(withIdentifier: "Next", context: 10)
 
 // with callback
-self.performSegueWithIdentifier("Next", context: 10) { (item: YourItem) -> Void in
+self.performSegue(withIdentifier: "Next", context: 10) { (item: YourItem) -> Void in
     // get a your item!
 }
 ```
@@ -139,12 +139,12 @@ self.performSegueWithIdentifier("Next", context: 10) { (item: YourItem) -> Void 
 ### presentViewController
 
 ```swift
-self.presentViewControllerWithStoryboardName("xxx", animated: true, context: 10)
-self.presentViewControllerWithStoryboardName("xxx", identifier: "xxx", animated: true, context: 10)
-self.presentViewControllerWithIdentifier("xxx", animated: true, context: 10)
-self.presentViewControllerWithStoryboard(storyboard, animated: true, context: 10)
+self.present(storyboardName: "xxx", animated: true, context: 10)
+self.present(storyboardName: "xxx", identifier: "xxx", animated: true, context: 10)
+self.present(storyboardName: "xxx", animated: true, context: 10)
+self.present(storyboardName: storyboard, animated: true, context: 10)
 
-self.presentViewControllerWithStoryboardName("xxx", context: 10) { (item: YourItem) -> Void in
+self.present(storyboardName: "xxx", context: 10) { (item: YourItem) -> Void in
     // get a your item!
 }
 ```
@@ -152,13 +152,13 @@ self.presentViewControllerWithStoryboardName("xxx", context: 10) { (item: YourIt
 ### pushViewController
 
 ```swift
-self.pushViewControllerWithStoryboardName("xxx", animated: true, context: 10)
-self.pushViewControllerWithStoryboardName("xxx", identifier: "xxx", animated: true, context: 10)
-self.pushViewControllerWithIdentifier("xxx", animated: true, context: 10)
-self.pushViewControllerWithStoryboard(storyboard, animated: true, context: 10)
+self.pushViewController(storyboardName: "xxx", animated: true, context: 10)
+self.pushViewController(storyboardName: "xxx", identifier: "xxx", animated: true, context: 10)
+self.pushViewController(storyboardName: "xxx", animated: true, context: 10)
+self.pushViewController(storyboard: storyboard, animated: true, context: 10)
 
 // with callback
-self.pushViewControllerWithStoryboardName("xxx", context: 10) { (item: YourItem) -> Void in
+self.pushViewController(storyboardName: "xxx", context: 10) { (item: YourItem) -> Void in
     // get a your item!
 }
 ```
@@ -170,9 +170,9 @@ viewController.sendContext(10)
 ```
 
 ```swift
-let vc = UIViewController.viewControllerFromStoryboardName("xxx", context: 10) as? MyViewController
-let vc = UIViewController.viewControllerFromStoryboardName("xxx", identifier: "xxx", context: 10) as? MyViewController
-let vc = UIViewController.viewControllerFromStoryboard(storyboard, context: 10) as? MyViewController
+let vc = UIViewController.viewController(storyboardName: "xxx", context: 10) as? MyViewController
+let vc = UIViewController.viewController(storyboardName: "xxx", identifier: "xxx", context: 10) as? MyViewController
+let vc = UIViewController.viewController(storyboard: storyboard, context: 10) as? MyViewController
 ```
 
 ## Additional good news!
