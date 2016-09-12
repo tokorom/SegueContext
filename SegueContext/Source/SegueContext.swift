@@ -389,7 +389,7 @@ extension UIViewController {
     }
 
     public func relayPresent(presentType type: PresentType, storyboard: UIStoryboard, viewControllerIdentifier: String? = nil, animated: Bool = true, transitionStyle: UIModalTransitionStyle? = nil, context: Any? = nil, anyCallback: Any? = nil) {
-        guard let viewController = UIViewController.relayViewController(fromStoryboard: storyboard, viewControllerIdentifier: viewControllerIdentifier, context: context, anyCallback: anyCallback) else {
+        guard let viewController = UIViewController.relayViewController(storyboard: storyboard, viewControllerIdentifier: viewControllerIdentifier, context: context, anyCallback: anyCallback) else {
             return
         }
 
@@ -406,21 +406,21 @@ extension UIViewController {
         }
     }
 
-    public class func viewController<A, R>(fromStoryboardName storyboardName: String, viewControllerIdentifier: String? = nil, bundle: Bundle? = nil, context: Any? = nil, callback: @escaping ((A) -> R)) -> UIViewController? {
+    public class func viewController<A, R>(storyboardName: String, viewControllerIdentifier: String? = nil, bundle: Bundle? = nil, context: Any? = nil, callback: @escaping ((A) -> R)) -> UIViewController? {
         let storyboard = UIStoryboard(name: storyboardName, bundle: bundle)
-        return viewController(fromStoryboard: storyboard, viewControllerIdentifier: viewControllerIdentifier, context: context, callback: callback)
+        return viewController(storyboard: storyboard, viewControllerIdentifier: viewControllerIdentifier, context: context, callback: callback)
     }
 
-    public class func relayViewController(fromStoryboardName storyboardName: String, viewControllerIdentifier: String? = nil, bundle: Bundle? = nil, context: Any? = nil, anyCallback: Any? = nil) -> UIViewController? {
+    public class func relayViewController(storyboardName: String, viewControllerIdentifier: String? = nil, bundle: Bundle? = nil, context: Any? = nil, anyCallback: Any? = nil) -> UIViewController? {
         let storyboard = UIStoryboard(name: storyboardName, bundle: bundle)
-        return relayViewController(fromStoryboard: storyboard, viewControllerIdentifier: viewControllerIdentifier, context: context, anyCallback: anyCallback)
+        return relayViewController(storyboard: storyboard, viewControllerIdentifier: viewControllerIdentifier, context: context, anyCallback: anyCallback)
     }
 
-    public class func viewController<A, R>(fromStoryboard storyboard: UIStoryboard, viewControllerIdentifier: String? = nil, context: Any? = nil, callback: @escaping ((A) -> R)) -> UIViewController? {
-        return relayViewController(fromStoryboard: storyboard, viewControllerIdentifier: viewControllerIdentifier, context: context, anyCallback: callback as Any?)
+    public class func viewController<A, R>(storyboard: UIStoryboard, viewControllerIdentifier: String? = nil, context: Any? = nil, callback: @escaping ((A) -> R)) -> UIViewController? {
+        return relayViewController(storyboard: storyboard, viewControllerIdentifier: viewControllerIdentifier, context: context, anyCallback: callback as Any?)
     }
 
-    public class func relayViewController(fromStoryboard storyboard: UIStoryboard, viewControllerIdentifier: String? = nil, context: Any? = nil, anyCallback: Any? = nil) -> UIViewController? {
+    public class func relayViewController(storyboard: UIStoryboard, viewControllerIdentifier: String? = nil, context: Any? = nil, anyCallback: Any? = nil) -> UIViewController? {
         let viewController: UIViewController?
         if let viewControllerIdentifier = viewControllerIdentifier {
             viewController = storyboard.instantiateViewController(withIdentifier: viewControllerIdentifier)
