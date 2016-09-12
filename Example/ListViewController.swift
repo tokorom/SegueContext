@@ -15,7 +15,7 @@ class ListViewController: UITableViewController {
 
     var value: Int = 0 {
         didSet {
-            self.label?.text = String(self.value)
+            self.label?.text = String(value)
         }
     }
 
@@ -25,52 +25,52 @@ class ListViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-    
-        if let value: Int = self.contextValue() {
+
+        if let value: Int = contextValue() {
             self.value = value
         }
 
-        if let context: MyContext = self.contextValue() {
+        if let context: MyContext = contextValue() {
             self.value = context.value
             self.multiplier = context.multiplier
         }
     }
 
-    func valueWithIndexPath(indexPath: NSIndexPath) -> Int {
-        return self.value + (indexPath.row + 1) * self.multiplier
+    func valueWithIndexPath(_ indexPath: IndexPath) -> Int {
+        return value + ((indexPath as NSIndexPath).row + 1) * multiplier
     }
-    
+
 }
 
 // MARK: - UITableViewDelegate
 
 extension ListViewController {
 
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        switch indexPath.section {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch (indexPath as NSIndexPath).section {
         case 1:
-            if let callback: (Int) -> Void = self.callback() {
-                let value = self.valueWithIndexPath(indexPath)
+            if let callback: (Int) -> Void = callback() {
+                let value = valueWithIndexPath(indexPath)
                 callback(value)
             }
-            let presentingVC = self.presentingViewController
-            self.dismissViewControllerAnimated(true) { _ -> Void in
-                presentingVC?.dismissViewControllerAnimated(true, completion: nil)
+            let presentingVC = presentingViewController
+            dismiss(animated: true) { _ -> Void in
+                presentingVC?.dismiss(animated: true, completion: nil)
             }
         case 2:
-            let context = MyContext(value: self.value, multiplier: self.multiplier * 2)
-            self.pushViewControllerWithIdentifier("ListViewController", context: context, callback: self.rawCallback)
+            let context = MyContext(value: value, multiplier: multiplier * 2)
+            relayPushViewController(viewControllerIdentifier: "ListViewController", context: context, anyCallback: anyCallback)
         default:
             break
         }
 
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 
-    override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-        switch indexPath.section {
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        switch (indexPath as NSIndexPath).section {
         case 1:
-            cell.textLabel?.text = String(self.valueWithIndexPath(indexPath))
+            cell.textLabel?.text = String(valueWithIndexPath(indexPath))
         default:
             break
         }

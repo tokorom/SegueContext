@@ -1,0 +1,4 @@
+line_length:
+ - 300 # warning
+file_length:
+ - 500 # warning
