@@ -411,6 +411,10 @@ extension UIViewController {
         return viewController(storyboard: storyboard, viewControllerIdentifier: viewControllerIdentifier, context: context, callback: callback)
     }
 
+    public class func viewController(storyboardName: String, viewControllerIdentifier: String? = nil, bundle: Bundle? = nil, context: Any? = nil) -> UIViewController? {
+        return relayViewController(storyboardName: storyboardName, viewControllerIdentifier: viewControllerIdentifier, bundle: bundle, context: context, anyCallback: nil)
+    }
+
     public class func relayViewController(storyboardName: String, viewControllerIdentifier: String? = nil, bundle: Bundle? = nil, context: Any? = nil, anyCallback: Any? = nil) -> UIViewController? {
         let storyboard = UIStoryboard(name: storyboardName, bundle: bundle)
         return relayViewController(storyboard: storyboard, viewControllerIdentifier: viewControllerIdentifier, context: context, anyCallback: anyCallback)
