@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "SegueContext"
-  s.version      = "1.1.1"
+  s.version      = "2.0.0"
   s.summary      = "You can pass the context to destination view controller easily"
   s.homepage     = "https://github.com/tokorom/SegueContext"
   s.license      = { :type => "MIT", :file => "LICENSE" }
