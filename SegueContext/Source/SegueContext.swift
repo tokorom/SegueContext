@@ -232,15 +232,15 @@ extension UIViewController {
         }
     }
 
-    public func performSegue<A, R>(withIdentifier identifier: String, sender: AnyObject? = nil, context: Any? = nil, callback: @escaping ((A) -> R)) {
+    public func performSegue<A, R>(withIdentifier identifier: String, sender: AnyObject? = nil, context: Any?, callback: @escaping ((A) -> R)) {
         relayPerformSegue(withIdentifier: identifier, sender: sender, context: context, anyCallback: callback as Any?)
     }
 
-    public func performSegue(withIdentifier identifier: String, sender: AnyObject? = nil, context: Any? = nil) {
+    public func performSegue(withIdentifier identifier: String, sender: AnyObject? = nil, context: Any?) {
         relayPerformSegue(withIdentifier: identifier, sender: sender, context: context, anyCallback: nil)
     }
 
-    public func relayPerformSegue(withIdentifier identifier: String, sender: AnyObject? = nil, context: Any? = nil, anyCallback: Any? = nil) {
+    public func relayPerformSegue(withIdentifier identifier: String, sender: AnyObject? = nil, context: Any?, anyCallback: Any? = nil) {
         objc_sync_enter(type(of: self))
 
         replacePrepareForSegueIfNeeded()
