@@ -54,7 +54,7 @@ extension ListViewController {
                 callback(value)
             }
             let presentingVC = presentingViewController
-            dismiss(animated: true) { _ -> Void in
+            dismiss(animated: true) { () -> Void in
                 presentingVC?.dismiss(animated: true, completion: nil)
             }
         case 2:

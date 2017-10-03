@@ -516,21 +516,31 @@ extension UIViewController {
     }
 
     class func replacePrepareForSegueIfNeeded() {
-        if nil == objc_getAssociatedObject(self, &SWCSwizzledAlready) {
-            objc_setAssociatedObject(self, &SWCSwizzledAlready, NSNumber(value: true), .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-            let original = class_getInstanceMethod(self, #selector(prepare(for:sender:)))
-            let replaced = class_getInstanceMethod(self, #selector(swc_wrapped_prepareForSegue(_:sender:)))
-            method_exchangeImplementations(original, replaced)
+        guard nil == objc_getAssociatedObject(self, &SWCSwizzledAlready) else {
+            return
         }
+        objc_setAssociatedObject(self, &SWCSwizzledAlready, NSNumber(value: true), .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        guard
+            let original = class_getInstanceMethod(self, #selector(prepare(for:sender:))),
+            let replaced = class_getInstanceMethod(self, #selector(swc_wrapped_prepareForSegue(_:sender:)))
+        else {
+            return
+        }
+        method_exchangeImplementations(original, replaced)
     }
 
     class func revertReplacedPrepareForSegueIfNeeded() {
-        if nil != objc_getAssociatedObject(self, &SWCSwizzledAlready) {
-            objc_setAssociatedObject(self, &SWCSwizzledAlready, nil, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-            let original = class_getInstanceMethod(self, #selector(prepare(for:sender:)))
-            let replaced = class_getInstanceMethod(self, #selector(swc_wrapped_prepareForSegue(_:sender:)))
-            method_exchangeImplementations(original, replaced)
+        guard nil != objc_getAssociatedObject(self, &SWCSwizzledAlready) else {
+            return
         }
+        objc_setAssociatedObject(self, &SWCSwizzledAlready, nil, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        guard
+            let original = class_getInstanceMethod(self, #selector(prepare(for:sender:))),
+            let replaced = class_getInstanceMethod(self, #selector(swc_wrapped_prepareForSegue(_:sender:)))
+        else {
+            return
+        }
+        method_exchangeImplementations(original, replaced)
     }
 
     func replacePrepareForSegueIfNeeded() {
@@ -541,7 +551,7 @@ extension UIViewController {
         type(of: self).revertReplacedPrepareForSegueIfNeeded()
     }
 
-    func swc_wrapped_prepareForSegue(_ segue: UIStoryboardSegue, sender: AnyObject?) {
+    @objc func swc_wrapped_prepareForSegue(_ segue: UIStoryboardSegue, sender: AnyObject?) {
         swc_wrapped_prepareForSegue(segue, sender: sender)
         swc_prepareForSegue(segue, sender: sender)
 
