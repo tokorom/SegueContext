@@ -1,7 +1,7 @@
 SegueContext
 ==================
 
-[![Swift Version](https://img.shields.io/badge/Swift-4.0-orange.svg?style=flat)](https://developer.apple.com/swift/)
+[![Swift Version](https://img.shields.io/badge/Swift-4.2-orange.svg?style=flat)](https://developer.apple.com/swift/)
 [![License](https://img.shields.io/cocoapods/l/SegueContext.svg?style=flat)](https://github.com/tokorom/SegueContext/blob/master/LICENSE)
 [![Cocoapods Compatible](https://img.shields.io/cocoapods/v/SegueContext.svg?style=flat)](https://cocoapods.org/)
 [![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
