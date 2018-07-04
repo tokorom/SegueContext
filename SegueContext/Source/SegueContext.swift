@@ -459,7 +459,7 @@ extension UIViewController {
     fileprivate func configureCustomContext(_ customContext: Context) {
         let viewController = self
         viewController.customContext = customContext
-        for viewController in viewController.childViewControllers {
+        for viewController in viewController.children {
             viewController.configureCustomContext(customContext)
         }
         switch viewController {
@@ -481,7 +481,7 @@ extension UIViewController {
     fileprivate func configureCustomContext(forCallback customContextForCallback: Context) {
         let viewController = self
         viewController.customContextForCallback = customContextForCallback
-        for viewController in viewController.childViewControllers {
+        for viewController in viewController.children {
             viewController.configureCustomContext(forCallback: customContextForCallback)
         }
         if let navi = viewController as? UINavigationController {
